@@ -61,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:hint="City Name"
+                        android:hint="Введите город..."
                         android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -110,7 +110,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="CITY CODE"
+                            android:text="Код города"
                             android:textSize="23sp" />
 
                         <TextView
@@ -118,7 +118,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="CITY NAME"
+                            android:text="Название города"
                             android:textSize="17sp" />
 
                     </LinearLayout>
@@ -148,25 +148,25 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Humidity" />
+                            android:text="Влажность" />
 
                         <!--Rüzgar Hızı-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Wind Speed" />
+                            android:text="Скорость ветра" />
 
                         <!--Enlem-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Latitude" />
+                            android:text="Широта" />
 
                         <!--Boylam-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Longitude" />
+                            android:text="Долгота" />
 
                     </LinearLayout>
 
@@ -180,25 +180,25 @@
                             android:id="@+id/tv_humidity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=":bilgi1" />
+                            android:text=":значение1" />
 
                         <TextView
                             android:id="@+id/tv_wind_speed"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=":bilgi2" />
+                            android:text=":значение2" />
 
                         <TextView
                             android:id="@+id/tv_lat"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=":bilgi3" />
+                            android:text=":значение3" />
 
                         <TextView
                             android:id="@+id/tv_lon"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text=":bilgi4" />
+                            android:text=":значение4" />
 
                     </LinearLayout>
 

@@ -14,6 +14,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 private const val TAG = "MainActivity"
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
@@ -30,7 +31,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        var cName = GET.getString("cityName", "london")?.toLowerCase()
+        var cName = GET.getString("cityName", "moscow")?.toLowerCase()
         edt_city_name.setText(cName)
         viewModel.refreshData(cName!!)
 
