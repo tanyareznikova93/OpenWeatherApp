@@ -18,8 +18,11 @@ class MainViewModel : ViewModel() {
     private val disposable = CompositeDisposable()
 
     val weather_data = MutableLiveData<WeatherModel>()
+    //val weather_data = MutableLiveData<DailyWeather>()
     val weather_error = MutableLiveData<Boolean>()
     val weather_loading = MutableLiveData<Boolean>()
+
+    //val daily_weather_data = MutableLiveData<DailyWeather>()
 
     fun refreshData(cityName: String) {
         getDataFromAPI(cityName)

@@ -9,9 +9,15 @@ interface WeatherAPI {
 
     //http://api.openweathermap.org/data/2.5/weather?q=moscow&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru
 
-    @GET("data/2.5/weather?&units=metric&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
+    @GET("data/2.5/weather?&units=metric&exclude=hourly,daily&&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getData(
         @Query("q") cityName: String
     ): Single<WeatherModel>
+
+    /*
+    fun getData(
+        @Query("q") cityName: String
+    ): Single<WeatherModel>
+     */
 
 }

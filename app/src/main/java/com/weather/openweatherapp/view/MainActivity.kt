@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.graphics.convertTo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
+import com.weather.openweatherapp.model.WeatherModel
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -36,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.refreshData(cName!!)
 
         getLiveData()
+        getLiveDataFuture()
 
         swipe_refresh_layout.setOnRefreshListener {
             ll_data.visibility = View.GONE
@@ -114,16 +117,18 @@ class MainActivity : AppCompatActivity() {
             data?.let {
                 ll_data.visibility = View.VISIBLE
 
-                Glide.with(this)
-                    .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
-                    .into(img_weather_pictures)
+                /*
+                tv_date_time2.text = data.minutely.toString()
+                tv_temperature2.text = data.hourly[0].temp.toString() + "°C"
+                tv_humidity2.text = data.hourly[0].humidity.toString() + "%"
+                tv_wind_speed2.text = data.hourly[0].windSpeed.toString()
 
-                tv_degree.text = data.main.temp.toString() + "°C"
+                tv_date_time3.text = data.minutely[].toString()
+                tv_temperature3.text = data.hourly[1].temp.toString() + "°C"
+                tv_humidity3.text = data.hourly[1].humidity.toString() + "%"
+                tv_wind_speed3.text = data.hourly[1].windSpeed.toString()
 
-                tv_humidity.text = data.main.humidity.toString() + "%"
-                tv_wind_speed.text = data.wind.speed.toString()
-                tv_lat.text = data.coord.lat.toString()
-                tv_lon.text = data.coord.lon.toString()
+                 */
 
             }
         })

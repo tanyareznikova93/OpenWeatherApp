@@ -10,6 +10,8 @@ class WeatherAPIService {
 
     //http://api.openweathermap.org/data/2.5/weather?q=london&APPID=461a6dc9004e4d04325d854e78571ab7
 
+    //https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=current&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru
+
     private val BASE_URL = "http://api.openweathermap.org/"
 
     private val api = Retrofit.Builder()
@@ -22,5 +24,11 @@ class WeatherAPIService {
     fun getDataService(cityName: String): Single<WeatherModel> {
         return api.getData(cityName)
     }
+
+    /*
+    fun getDataService(cityName: String): Single<WeatherModel> {
+        return api.getData(cityName)
+    }
+     */
 
 }
