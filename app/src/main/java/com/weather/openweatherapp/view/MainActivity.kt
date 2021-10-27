@@ -57,7 +57,7 @@ class MainActivity : AppCompatActivity() {
             Log.i(TAG, "onCreate: " + cityName)
         }
 
-    }
+    }//onCreate
 
     private fun getLiveData() {
 
@@ -106,6 +106,52 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-    }//onCreate
+    }//getLiveData
+
+    private fun getLiveDataFuture() {
+
+        viewModel.weather_data.observe(this, Observer { data ->
+            data?.let {
+                ll_data.visibility = View.VISIBLE
+
+                Glide.with(this)
+                    .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
+                    .into(img_weather_pictures)
+
+                tv_degree.text = data.main.temp.toString() + "°C"
+
+                tv_humidity.text = data.main.humidity.toString() + "%"
+                tv_wind_speed.text = data.wind.speed.toString()
+                tv_lat.text = data.coord.lat.toString()
+                tv_lon.text = data.coord.lon.toString()
+
+            }
+        })
+
+        viewModel.weather_error.observe(this, Observer { error ->
+            error?.let {
+                if (error) {
+                    tv_error.visibility = View.VISIBLE
+                    pb_loading.visibility = View.GONE
+                    ll_data.visibility = View.GONE
+                } else {
+                    tv_error.visibility = View.GONE
+                }
+            }
+        })
+
+        viewModel.weather_loading.observe(this, Observer { loading ->
+            loading?.let {
+                if (loading) {
+                    pb_loading.visibility = View.VISIBLE
+                    tv_error.visibility = View.GONE
+                    ll_data.visibility = View.GONE
+                } else {
+                    pb_loading.visibility = View.GONE
+                }
+            }
+        })
+
+    }//getLiveDataFuture
 
 }//MainActivity

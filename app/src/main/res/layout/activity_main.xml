@@ -76,10 +76,63 @@
             </LinearLayout>
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="#4DFFFFFF"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fav_city1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="Название города 1"/>
+                    <TextView
+                        android:id="@+id/tv_fav_city2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="Название города 2" />
+                    <!--Nem-->
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_fav_city_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="Название города 3" />
+                    <TextView
+                        android:id="@+id/tv_fav_city_4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="1dp"
+                        android:text="Название города 4" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/ll_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -134,17 +187,16 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="10dp"
                     android:background="#4DFFFFFF"
                     android:orientation="horizontal"
-                    android:padding="15dp">
+                    android:padding="10dp">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
 
-                        <!--Nem-->
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -203,6 +255,150 @@
                     </LinearLayout>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:background="#4DFFFFFF"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--Temp-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Дата" />
+                        <!--Nem-->
+                        <!--Temp-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Температура" />
+                        <!--Nem-->
+                        <!--Nem-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Влажность" />
+
+                        <!--Rüzgar Hızı-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Скорость ветра" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_time2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение1" />
+                        <TextView
+                            android:id="@+id/tv_temperature2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение2" />
+
+                        <TextView
+                            android:id="@+id/tv_humidity2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение3" />
+
+                        <TextView
+                            android:id="@+id/tv_wind_speed2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение4" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="#4DFFFFFF"
+                    android:orientation="horizontal"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!--Temp-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Дата" />
+                        <!--Nem-->
+                        <!--Temp-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Температура" />
+                        <!--Nem-->
+                        <!--Nem-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Влажность" />
+
+                        <!--Rüzgar Hızı-->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Скорость ветра" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_date_time3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение1" />
+                        <TextView
+                            android:id="@+id/tv_temperature3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение2" />
+
+                        <TextView
+                            android:id="@+id/tv_humidity3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение3" />
+
+                        <TextView
+                            android:id="@+id/tv_wind_speed3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=":значение4" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
