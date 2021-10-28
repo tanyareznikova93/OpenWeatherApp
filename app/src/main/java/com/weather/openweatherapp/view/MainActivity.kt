@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        var cName = GET.getString("cityName", "moscow")?.toLowerCase()
+        //var cName = GET.getString("cityName", "moscow")?.toLowerCase()
+        val cName = GET.getString("cityName", "moscow")
         edt_city_name.setText(cName)
         viewModel.refreshData(cName!!)
 
@@ -45,7 +46,8 @@ class MainActivity : AppCompatActivity() {
             tv_error.visibility = View.GONE
             pb_loading.visibility = View.GONE
 
-            var cityName = GET.getString("cityName", cName)?.toLowerCase()
+            //var cityName = GET.getString("cityName", cName)?.toLowerCase()
+            val cityName = GET.getString("cityName", cName)
             edt_city_name.setText(cityName)
             viewModel.refreshData(cityName!!)
             swipe_refresh_layout.isRefreshing = false
