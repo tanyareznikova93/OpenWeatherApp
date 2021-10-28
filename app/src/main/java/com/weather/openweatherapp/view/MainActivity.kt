@@ -10,9 +10,17 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
+import com.weather.openweatherapp.databinding.ActivityMainBinding
+//import com.weather.openweatherapp.fragment.current.CurrentWeatherFragment
+import com.weather.openweatherapp.fragment.daily.DailyWeatherFragment
+import com.weather.openweatherapp.fragment.favcity.FavCityFragment
+import com.weather.openweatherapp.fragment.hourly.HourlyWeatherFragment
 import com.weather.openweatherapp.model.WeatherModel
+import com.weather.openweatherapp.utils.APP_ACTIVITY
+import com.weather.openweatherapp.utils.replaceFragment
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+//import kotlinx.android.synthetic.main.fragment_current_weather.*
 
 private const val TAG = "MainActivity"
 
@@ -24,9 +32,17 @@ class MainActivity : AppCompatActivity() {
     private lateinit var GET: SharedPreferences
     private lateinit var SET: SharedPreferences.Editor
 
+    private lateinit var mBinding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        //mBinding = ActivityMainBinding.inflate(layoutInflater)
+        //setContentView(mBinding.root)
+        APP_ACTIVITY = this
+
+        //initFields()
 
         GET = getSharedPreferences(packageName, MODE_PRIVATE)
         SET = GET.edit()
@@ -39,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.refreshData(cName!!)
 
         getLiveData()
-        getLiveDataFuture()
+        //getLiveDataFuture()
 
         swipe_refresh_layout.setOnRefreshListener {
             ll_data.visibility = View.GONE
@@ -62,103 +78,120 @@ class MainActivity : AppCompatActivity() {
             Log.i(TAG, "onCreate: " + cityName)
         }
 
+        hourly_ib.setOnClickListener {
+            replaceFragment(HourlyWeatherFragment())
+        }
+        daily_ib.setOnClickListener {
+            replaceFragment(DailyWeatherFragment())
+        }
+        settings_main_ib.setOnClickListener {
+            replaceFragment(FavCityFragment())
+        }
+
+
     }//onCreate
 
-    private fun getLiveData() {
 
-        viewModel.weather_data.observe(this, Observer { data ->
-            data?.let {
-                ll_data.visibility = View.VISIBLE
+    override fun onResume() {
+        super.onResume()
+    }//onResume
 
-                tv_city_code.text = data.sys.country.toString()
-                tv_city_name.text = data.name.toString()
 
-                Glide.with(this)
-                    .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
-                    .into(img_weather_pictures)
+       private fun getLiveData() {
 
-                tv_degree.text = data.main.temp.toString() + "°C"
+           viewModel.weather_data.observe(this, Observer { data ->
+               data?.let {
+                   ll_data.visibility = View.VISIBLE
 
-                tv_humidity.text = data.main.humidity.toString() + "%"
-                tv_wind_speed.text = data.wind.speed.toString()
-                tv_lat.text = data.coord.lat.toString()
-                tv_lon.text = data.coord.lon.toString()
+                   tv_city_code.text = data.sys.country.toString()
+                   tv_city_name.text = data.name.toString()
 
-            }
-        })
+                   Glide.with(this)
+                       .load("https://openweathermap.org/img/wn/" + data.weather.get(0).icon + "@2x.png")
+                       .into(img_weather_pictures)
 
-        viewModel.weather_error.observe(this, Observer { error ->
-            error?.let {
-                if (error) {
-                    tv_error.visibility = View.VISIBLE
-                    pb_loading.visibility = View.GONE
-                    ll_data.visibility = View.GONE
-                } else {
-                    tv_error.visibility = View.GONE
-                }
-            }
-        })
+                   tv_degree.text = data.main.temp.toString() + "°C"
 
-        viewModel.weather_loading.observe(this, Observer { loading ->
-            loading?.let {
-                if (loading) {
-                    pb_loading.visibility = View.VISIBLE
-                    tv_error.visibility = View.GONE
-                    ll_data.visibility = View.GONE
-                } else {
-                    pb_loading.visibility = View.GONE
-                }
-            }
-        })
+                   tv_humidity.text = data.main.humidity.toString() + "%"
+                   tv_wind_speed.text = data.wind.speed.toString()
+                   tv_lat.text = data.coord.lat.toString()
+                   tv_lon.text = data.coord.lon.toString()
 
-    }//getLiveData
+               }
+           })
 
-    private fun getLiveDataFuture() {
+           viewModel.weather_error.observe(this, Observer { error ->
+               error?.let {
+                   if (error) {
+                       tv_error.visibility = View.VISIBLE
+                       pb_loading.visibility = View.GONE
+                       ll_data.visibility = View.GONE
+                   } else {
+                       tv_error.visibility = View.GONE
+                   }
+               }
+           })
 
-        viewModel.weather_data.observe(this, Observer { data ->
-            data?.let {
-                ll_data.visibility = View.VISIBLE
+           viewModel.weather_loading.observe(this, Observer { loading ->
+               loading?.let {
+                   if (loading) {
+                       pb_loading.visibility = View.VISIBLE
+                       tv_error.visibility = View.GONE
+                       ll_data.visibility = View.GONE
+                   } else {
+                       pb_loading.visibility = View.GONE
+                   }
+               }
+           })
 
-                /*
-                tv_date_time2.text = data.minutely.toString()
-                tv_temperature2.text = data.hourly[0].temp.toString() + "°C"
-                tv_humidity2.text = data.hourly[0].humidity.toString() + "%"
-                tv_wind_speed2.text = data.hourly[0].windSpeed.toString()
+       }//getLiveData
 
-                tv_date_time3.text = data.minutely[].toString()
-                tv_temperature3.text = data.hourly[1].temp.toString() + "°C"
-                tv_humidity3.text = data.hourly[1].humidity.toString() + "%"
-                tv_wind_speed3.text = data.hourly[1].windSpeed.toString()
+       private fun getLiveDataFuture() {
 
-                 */
+           viewModel.weather_data.observe(this, Observer { data ->
+               data?.let {
+                   ll_data.visibility = View.VISIBLE
 
-            }
-        })
+                   /*
+                   tv_date_time2.text = data.minutely.toString()
+                   tv_temperature2.text = data.hourly[0].temp.toString() + "°C"
+                   tv_humidity2.text = data.hourly[0].humidity.toString() + "%"
+                   tv_wind_speed2.text = data.hourly[0].windSpeed.toString()
 
-        viewModel.weather_error.observe(this, Observer { error ->
-            error?.let {
-                if (error) {
-                    tv_error.visibility = View.VISIBLE
-                    pb_loading.visibility = View.GONE
-                    ll_data.visibility = View.GONE
-                } else {
-                    tv_error.visibility = View.GONE
-                }
-            }
-        })
+                   tv_date_time3.text = data.minutely[].toString()
+                   tv_temperature3.text = data.hourly[1].temp.toString() + "°C"
+                   tv_humidity3.text = data.hourly[1].humidity.toString() + "%"
+                   tv_wind_speed3.text = data.hourly[1].windSpeed.toString()
 
-        viewModel.weather_loading.observe(this, Observer { loading ->
-            loading?.let {
-                if (loading) {
-                    pb_loading.visibility = View.VISIBLE
-                    tv_error.visibility = View.GONE
-                    ll_data.visibility = View.GONE
-                } else {
-                    pb_loading.visibility = View.GONE
-                }
-            }
-        })
+                    */
 
-    }//getLiveDataFuture
+               }
+           })
+
+           viewModel.weather_error.observe(this, Observer { error ->
+               error?.let {
+                   if (error) {
+                       tv_error.visibility = View.VISIBLE
+                       pb_loading.visibility = View.GONE
+                       ll_data.visibility = View.GONE
+                   } else {
+                       tv_error.visibility = View.GONE
+                   }
+               }
+           })
+
+           viewModel.weather_loading.observe(this, Observer { loading ->
+               loading?.let {
+                   if (loading) {
+                       pb_loading.visibility = View.VISIBLE
+                       tv_error.visibility = View.GONE
+                       ll_data.visibility = View.GONE
+                   } else {
+                       pb_loading.visibility = View.GONE
+                   }
+               }
+           })
+
+       }//getLiveDataFuture
 
 }//MainActivity

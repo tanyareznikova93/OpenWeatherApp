@@ -1,85 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="10dp"
-    android:background="#4DFFFFFF"
-    android:orientation="horizontal"
-    android:padding="10dp">
-
-    <TextView
-        android:id="@+id/daily_item_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Почасавая погода"
-        android:textColor="@color/black"
-        android:textSize="25sp"
-        tools:ignore="MissingConstraints" />
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
+        android:background="#4DFFFFFF"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        tools:ignore="MissingConstraints"
         >
 
-        <!--Temp-->
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Дата" />
-        <!--Nem-->
-        <!--Temp-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Температура" />
-        <!--Nem-->
-        <!--Nem-->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Влажность" />
+            android:orientation="vertical">
 
-        <!--Rüzgar Hızı-->
-        <TextView
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Время" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Температура" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Влажность" />
+
+            <!--Rüzgar Hızı-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Скорость ветра" />
+
+            <!--Enlem-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Широта" />
+
+            <!--Boylam-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Долгота" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Скорость ветра" />
+            android:layout_marginLeft="15dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_date_time2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение1" />
+
+            <TextView
+                android:id="@+id/tv_temperature2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение2" />
+
+            <TextView
+                android:id="@+id/tv_humidity2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение3" />
+
+            <TextView
+                android:id="@+id/tv_wind_speed2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение4" />
+
+            <TextView
+                android:id="@+id/tv_lat2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение5" />
+
+            <TextView
+                android:id="@+id/tv_lon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":значение6" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="15dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tv_date_time3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":значение1" />
-        <TextView
-            android:id="@+id/tv_temperature3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":значение2" />
-
-        <TextView
-            android:id="@+id/tv_humidity3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":значение3" />
-
-        <TextView
-            android:id="@+id/tv_wind_speed3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=":значение4" />
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

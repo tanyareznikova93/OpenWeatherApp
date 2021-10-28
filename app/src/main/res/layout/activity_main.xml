@@ -8,6 +8,7 @@
     tools:context=".view.MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/data_container2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
@@ -42,6 +43,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/main_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#4DFFFFFF"
@@ -49,7 +51,7 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#55FFFFFF"
@@ -72,66 +74,6 @@
                     android:layout_height="match_parent"
                     android:padding="10dp"
                     android:src="@drawable/ic_baseline_search_24" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:background="#4DFFFFFF"
-                android:orientation="horizontal"
-                android:padding="10dp">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_fav_city1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_margin="1dp"
-                        android:padding="2dp"
-                        android:text="Название города 1"
-                        style="@style/settings_buttons" />
-                    <TextView
-                        android:id="@+id/tv_fav_city2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_margin="1dp"
-                        android:padding="2dp"
-                        android:text="Название города 2"
-                        style="@style/settings_buttons" />
-                    <!--Nem-->
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_fav_city_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_margin="1dp"
-                        android:padding="2dp"
-                        android:text="Название города 3"
-                        style="@style/settings_buttons" />
-                    <TextView
-                        android:id="@+id/tv_fav_city_4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="35dp"
-                        android:layout_margin="1dp"
-                        android:padding="2dp"
-                        android:text="Название города 4"
-                        style="@style/settings_buttons" />
-
-                </LinearLayout>
 
             </LinearLayout>
 
@@ -267,7 +209,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="25dp"
                     android:background="#4DFFFFFF"
                     android:orientation="horizontal"
                     android:padding="10dp">
@@ -328,6 +270,34 @@
                         style="@style/settings_buttons2"
                         />
 
+                    <TextView
+                        android:id="@+id/settings_main_tv"
+                        android:layout_width="0dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="1dp"
+                        android:padding="2dp"
+                        android:text="Добавить город"
+                        android:textAlignment="center"
+                        app:layout_constraintEnd_toEndOf="@+id/daily_weather_tv"
+                        app:layout_constraintEnd_toStartOf="@+id/daily_ib"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/daily_weather_tv"
+                        tools:ignore="MissingConstraints" />
+
+                    <ImageView
+                        android:id="@+id/settings_main_ib"
+                        android:layout_width="180dp"
+                        android:layout_height="35dp"
+                        android:layout_margin="1dp"
+                        android:padding="2dp"
+                        android:src="@drawable/ic_add_fav_city"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/daily_ib"
+                        app:layout_constraintVertical_bias="1.0"
+                        app:tint="@color/white"
+                        style="@style/settings_buttons2" />
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </LinearLayout>
@@ -337,4 +307,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
 

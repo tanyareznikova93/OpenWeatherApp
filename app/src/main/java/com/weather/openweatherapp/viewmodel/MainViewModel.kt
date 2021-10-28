@@ -11,7 +11,7 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
 
-private const val TAG = "MainViewModel"
+const val TAG = "MainViewModel"
 
 class MainViewModel : ViewModel() {
 
