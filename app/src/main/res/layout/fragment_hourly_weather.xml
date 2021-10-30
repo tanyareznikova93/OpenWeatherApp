@@ -1,47 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/swipe_refresh_layout2"
+    android:padding="16dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.hourly.HourlyWeatherFragment"
     android:background="@drawable/bg_screen">
 
-    <TextView
-        android:id="@+id/hourly_item_layout_tv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Название города"
-        android:textColor="@color/white"
-        android:padding="2dp"
-        android:layout_margin="1dp"
-        android:textSize="25sp"
-        android:maxLines="2"
-        tools:ignore="MissingConstraints"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/hourly_recycler_view"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/data_container2">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/hourly_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/hourly_item_layout"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/hourly_item_layout_tv"
-        />
+                <TextView
+                    android:id="@+id/tv_error2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/error_message"
+                    android:padding="15dp"
+                    android:background="#4DFFFFFF"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/back_from_hourly_iv"
-        style="@style/settings_buttons_add_fav_city"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_margin="1dp"
-        android:padding="2dp"
-        android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:tint="@color/white" />
+                <ProgressBar
+                    android:id="@+id/pb_loading2"
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/hourly_item_layout_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Название города"
+                    android:textColor="@color/white"
+                    android:padding="2dp"
+                    android:layout_margin="1dp"
+                    android:textSize="25sp"
+                    android:maxLines="2"
+                    tools:ignore="MissingConstraints"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/hourly_recycler_view"
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/hourly_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/hourly_weather_item"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/hourly_item_layout_tv"
+                    app:layout_constraintStart_toStartOf="parent"
+                    />
+
+                <ImageView
+                    android:id="@+id/back_from_hourly_iv"
+                    style="@style/settings_buttons_add_fav_city"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_margin="1dp"
+                    android:padding="2dp"
+                    android:src="@drawable/ic_back"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:tint="@color/white" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

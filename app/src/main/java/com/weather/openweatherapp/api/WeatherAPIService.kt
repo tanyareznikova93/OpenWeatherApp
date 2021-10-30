@@ -1,7 +1,15 @@
 package com.weather.openweatherapp.api
 
-import com.weather.openweatherapp.model.CurrentWeather
-import com.weather.openweatherapp.model.WeatherModel
+import com.weather.openweatherapp.model.alldata.CurrentWeather
+import com.weather.openweatherapp.model.alldata.Daily
+import com.weather.openweatherapp.model.alldata.Hourly
+import com.weather.openweatherapp.model.allweather.AllWeatherModel
+import com.weather.openweatherapp.model.current.CurrentWeatherModel
+import com.weather.openweatherapp.model.daily.DailyWeatherModel
+import com.weather.openweatherapp.model.forecast.Forecast
+import com.weather.openweatherapp.model.forecast.ForecastModel
+import com.weather.openweatherapp.model.hourly.HourlyWeatherModel
+import com.weather.openweatherapp.model.weather.WeatherModel
 import io.reactivex.Single
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
@@ -26,9 +34,54 @@ class WeatherAPIService {
         return api.getData(cityName)
     }
 
+    fun getDataServiceFromForecast(cityName: String): Single<ForecastModel> {
+        return api.getDataFromForecast(cityName)
+    }
+
+    /*
+    fun getHourlyDataServiceFromForecast(cityName: String): Single<ForecastModel> {
+        return api.getHourlyDataFromForecast(cityName)
+    }
+    fun getDailyDataServiceFromForecast(cityName: String): Single<ForecastModel> {
+        return api.getDailyDataFromForecast(cityName)
+    }
+
+     */
+
+    /*
+    fun getCurrentDataService(latCity: String, lonCity: String): Single<CurrentWeatherModel> {
+        return api.getCurrentData(latCity,lonCity)
+    }
+
+    fun getHourlyDataService(latCity: String, lonCity: String): Single<HourlyWeatherModel> {
+        return api.getHourlyData(latCity,lonCity)
+    }
+
+    fun getDailyDataService(latCity: String, lonCity: String): Single<DailyWeatherModel> {
+        return api.getDailyData(latCity,lonCity)
+    }
+
+
+
     fun getAllDataService(latCity: String, lonCity: String): Single<CurrentWeather> {
         return api.getAllData(latCity,lonCity)
     }
+
+
+    fun getAllDataServiceDaily(latCity: String, lonCity: String): Single<Daily> {
+        return api.getAllDataDaily(latCity,lonCity)
+    }
+
+    fun getAllDataServiceHourly(latCity: String, lonCity: String): Single<Hourly> {
+        return api.getAllDataHourly(latCity,lonCity)
+    }
+
+
+    fun getAllWeatherDataService(latCity: String, lonCity: String): Single<AllWeatherModel> {
+        return api.getAllWeatherData(latCity,lonCity)
+    }
+
+     */
 
 
 }

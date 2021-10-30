@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.core.graphics.convertTo
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -15,7 +14,6 @@ import com.weather.openweatherapp.databinding.ActivityMainBinding
 import com.weather.openweatherapp.fragment.daily.DailyWeatherFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.fragment.hourly.HourlyWeatherFragment
-import com.weather.openweatherapp.model.WeatherModel
 import com.weather.openweatherapp.utils.APP_ACTIVITY
 import com.weather.openweatherapp.utils.replaceFragment
 import com.weather.openweatherapp.viewmodel.MainViewModel
@@ -50,9 +48,17 @@ class MainActivity : AppCompatActivity() {
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         //var cName = GET.getString("cityName", "moscow")?.toLowerCase()
+
         val cName = GET.getString("cityName", "moscow")
         edt_city_name.setText(cName)
         viewModel.refreshData(cName!!)
+
+
+        //val cLatName = GET.getString("lat", "55.7522")
+        //val cLonName = GET.getString("lon", "37.6156")
+        //setCity()
+        //edt_city_name.setText(cName)
+        //viewModel.refreshAllWeatherData(cName!!)
 
         getLiveData()
         //getLiveDataFuture()
@@ -77,6 +83,7 @@ class MainActivity : AppCompatActivity() {
             getLiveData()
             Log.i(TAG, "onCreate: " + cityName)
         }
+
 
         hourly_ib.setOnClickListener {
             replaceFragment(HourlyWeatherFragment())
@@ -146,6 +153,7 @@ class MainActivity : AppCompatActivity() {
 
        }//getLiveData
 
+     /*
        private fun getLiveDataFuture() {
 
            viewModel.weather_data.observe(this, Observer { data ->
@@ -193,5 +201,7 @@ class MainActivity : AppCompatActivity() {
            })
 
        }//getLiveDataFuture
+
+     */
 
 }//MainActivity
