@@ -5,8 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <TextView
-        style="@style/settings_buttons"
-        android:id="@+id/daily_item_title_tv"
+        style="@style/settings_buttons3"
+        android:id="@+id/fav_city_item_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Название города"

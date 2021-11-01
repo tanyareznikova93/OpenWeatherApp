@@ -1,14 +1,8 @@
 package com.weather.openweatherapp.api
 
-import com.weather.openweatherapp.model.alldata.CurrentWeather
-import com.weather.openweatherapp.model.alldata.Daily
-import com.weather.openweatherapp.model.alldata.Hourly
-import com.weather.openweatherapp.model.allweather.AllWeatherModel
-import com.weather.openweatherapp.model.current.CurrentWeatherModel
-import com.weather.openweatherapp.model.daily.DailyWeatherModel
+
 import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
-import com.weather.openweatherapp.model.hourly.HourlyWeatherModel
 import com.weather.openweatherapp.model.weather.WeatherModel
 import io.reactivex.Single
 import retrofit2.Retrofit
@@ -34,9 +28,19 @@ class WeatherAPIService {
         return api.getData(cityName)
     }
 
+    fun getDataServiceForFavCity(cityName: String): Single<WeatherModel> {
+        return api.getDataForFavCity(cityName)
+    }
+
     fun getDataServiceFromForecast(cityName: String): Single<ForecastModel> {
         return api.getDataFromForecast(cityName)
     }
+
+    fun getDataServiceFromForecast2(cityName: String): Single<ForecastModel> {
+        return api.getDataFromForecast2(cityName)
+    }
+
+
 
     /*
     fun getHourlyDataServiceFromForecast(cityName: String): Single<ForecastModel> {

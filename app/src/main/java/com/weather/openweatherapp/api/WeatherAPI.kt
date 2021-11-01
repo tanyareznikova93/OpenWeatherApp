@@ -1,14 +1,8 @@
 package com.weather.openweatherapp.api
 
-import com.weather.openweatherapp.model.alldata.CurrentWeather
-import com.weather.openweatherapp.model.alldata.Daily
-import com.weather.openweatherapp.model.alldata.Hourly
-import com.weather.openweatherapp.model.allweather.AllWeatherModel
-import com.weather.openweatherapp.model.current.CurrentWeatherModel
-import com.weather.openweatherapp.model.daily.DailyWeatherModel
+
 import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
-import com.weather.openweatherapp.model.hourly.HourlyWeatherModel
 import com.weather.openweatherapp.model.weather.WeatherModel
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -49,10 +43,25 @@ interface WeatherAPI {
     ): Single<WeatherModel>
 
     //Получаем данные для поиска погоды по стране
+    @GET("data/2.5/weather?&units=metric&exclude=hourly,daily&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
+    fun getDataForFavCity(
+        @Query("q") cityName: String
+    ): Single<WeatherModel>
+
+    //Получаем данные для поиска погоды по стране
     @GET("data/2.5/forecast?&units=metric&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getDataFromForecast(
         @Query("q") cityName: String
     ): Single<ForecastModel>
+
+    //Получаем данные для поиска погоды по стране
+    @GET("data/2.5/forecast?&units=metric&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
+    fun getDataFromForecast2(
+        @Query("q") cityName: String
+    ): Single<ForecastModel>
+
+
+
 
     /*
     //Получаем данные для поиска погоды по стране
