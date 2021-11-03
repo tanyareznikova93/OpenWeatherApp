@@ -9,7 +9,7 @@ data class WeatherModel(
     val dt: Int,
     val id: Int,
     val main: Main,
-    val name: String,
+    var name: String,
     val sys: Sys,
     val timezone: Int,
     val visibility: Int,

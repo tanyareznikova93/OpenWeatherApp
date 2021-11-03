@@ -40,9 +40,6 @@
             android:id="@+id/search_cl_fav_city"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#4DFFFFFF"
-            android:padding="5dp"
-            android:orientation="horizontal"
             tools:ignore="MissingConstraints">
 
             <LinearLayout

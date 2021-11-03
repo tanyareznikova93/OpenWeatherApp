@@ -1,5 +1,7 @@
 package com.weather.openweatherapp.fragment.favcity
 
+import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -19,19 +21,25 @@ import com.weather.openweatherapp.adapter.FavCityAdapter
 import com.weather.openweatherapp.adapter.HourlyWeatherAdapter
 import com.weather.openweatherapp.databinding.ActivityMainBinding
 import com.weather.openweatherapp.databinding.FragmentFavCityBinding
+import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 import com.weather.openweatherapp.model.weather.WeatherModel
 import com.weather.openweatherapp.utils.APP_ACTIVITY
+import com.weather.openweatherapp.utils.replaceFragment
 //import com.weather.openweatherapp.utils.replaceActivity
 import com.weather.openweatherapp.utils.restartActivity
 import com.weather.openweatherapp.utils.showToast
+import com.weather.openweatherapp.view.MainActivity
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fav_city_item_layout.*
+import kotlinx.android.synthetic.main.fragment_change_city.*
 import kotlinx.android.synthetic.main.fragment_fav_city.*
+import java.util.ArrayList
 
-const val TAG = "MainActivity"
+const val TAG = "FavCityFragment"
 
-class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
+class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.OnItemClickListener
+{
 
     private lateinit var viewModel: MainViewModel
 
@@ -43,11 +51,31 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
     private lateinit var mAdapter: FavCityAdapter
     private lateinit var mLayoutManager: LinearLayoutManager
 
+    private var listItem = mutableListOf<WeatherModel>()
+    private lateinit var listItemFavCity: WeatherModel
+
+    /*
+    private val itemClickListener: (data: WeatherModel) -> Unit = { dataItem->
+        showToast("Item Click on: $dataItem")
+        //Toast.makeText(requireContext(),"Item Click on: $dataItem",Toast.LENGTH_LONG).show()
+    }//itemClickListener
+
+     */
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
 
     }//onCreate
+
+    /*
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        //очищаем лист перед запуском
+        //listFavCity.clear()
+    }
+
+     */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -61,10 +89,10 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
         val cName = GET.getString("cityName", "moscow")
         edt_city_name_fav_city.setText(cName)
         //fav_city_item_title_tv.setText(cName)
-        viewModel.refreshData(cName!!)
+        //viewModel.refreshData(cName!!)
         viewModel.refreshDataForFavCity(cName!!)
-        viewModel.refreshForecastData(cName!!)
-        viewModel.refreshForecastData2(cName!!)
+        //viewModel.refreshForecastData(cName!!)
+        //viewModel.refreshForecastData2(cName!!)
 
         initRecyclerView()
         getLiveDataFavCity()
@@ -112,17 +140,44 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
             SET.apply()
             //if(listFavCity.isEmpty()) showToast("Добавьте город")
             //else replaceFragment(CreateGroupFragment(listFavCity))
-            viewModel.refreshData(cityName)
+            //viewModel.refreshData(cityName)
+            //cityName = listItemFavCity.name
+            //mAdapter.updateListItems(listItemFavCity)
             viewModel.refreshDataForFavCity(cityName)
-            viewModel.refreshForecastData(cityName)
-            viewModel.refreshForecastData2(cityName)
+            //viewModel.refreshForecastData(cityName)
+            //viewModel.refreshForecastData2(cityName)
             initRecyclerView()
             getLiveDataFavCity()
             //getLiveData()
             //getLiveDataHourly()
             //getLiveDataDaily()
             Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
+            //edt_city_name_fav_city.clearComposingText()
 
+        }
+
+        city_recycler_view.setOnClickListener {
+            val cityName = fav_city_item_title_tv.text.toString()
+            //cityName = fav_city_item_title_tv.text.toString()
+            //fav_city_item_title_tv.text = cityName
+            SET.putString("cityName", cityName)
+            //SET.putString("cityName", cityName2)
+            SET.apply()
+            //if(listFavCity.isEmpty()) showToast("Добавьте город")
+            //else replaceFragment(CreateGroupFragment(listFavCity))
+            //viewModel.refreshData(cityName)
+            //cityName = listItemFavCity.name
+            //mAdapter.updateListItems(listItemFavCity)
+            viewModel.refreshDataForFavCity(cityName)
+            //viewModel.refreshForecastData(cityName)
+            //viewModel.refreshForecastData2(cityName)
+            initRecyclerView()
+            getLiveDataFavCity()
+            //getLiveData()
+            //getLiveDataHourly()
+            //getLiveDataDaily()
+            Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
+            //edt_city_name_fav_city.clearComposingText()
         }
 
         add_fav_city_iv.setOnClickListener {
@@ -134,6 +189,48 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
         }
 
     }//onViewCreated
+
+
+
+    /*
+    override fun OnItemClick(item: WeatherModel,position: Int) {
+
+        //val intent = Intent(APP_ACTIVITY,MainActivity::class.java)
+        //intent.putExtra("CITYNAME",item.name)
+
+        //val fragmentManager = APP_ACTIVITY.supportFragmentManager.beginTransaction()
+        //fragmentManager.add(item.name)
+        showToast(item.name)
+
+        //tv_city_name_current_change_city.setText(item.name)
+        //tv_degree_current_change_city.setText(item.main.temp.toString())
+        //tv_weather_description_current_change_city.setText(item.weather.get(position).description)
+        //tv_humidity_current_change_city.setText(item.main.humidity)
+        //tv_wind_speed_current_change_city.setText(item.wind.speed.toString())
+        //tv_city_name_current_change_city.text = item.name
+
+        replaceFragment(ChangeCityFragment())
+
+        //viewModel.refreshData(item.name)
+        //viewModel.refreshDataForFavCity(item.name)
+        //viewModel.refreshForecastData(item.name)
+        //viewModel.refreshForecastData2(item.name)
+        //restartActivity()
+        //APP_ACTIVITY.getLiveData()
+        //getLiveDataFavCity()
+        //APP_ACTIVITY.getLiveDataHourly()
+        //APP_ACTIVITY.getLiveDataDaily()
+
+        //restartActivity()
+
+        //val clickedItem = listFavCity[position]
+        //clickedItem.name.toString()
+        //mAdapter.notifyItemChanged(position)
+        //restartActivity()
+        //mAdapter.updateListItems(clickedItem)
+    }//OnItemClick
+
+     */
 
     private fun initRecyclerView() {
         mRecyclerView = city_recycler_view
@@ -151,7 +248,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
     }//onResume
 
 
-    private fun getLiveDataFavCity() {
+    fun getLiveDataFavCity() {
 
         //viewLifecycleOwner
         viewModel.weather_data_fav_city.observe(APP_ACTIVITY, Observer { data ->
@@ -159,6 +256,12 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
 
                 city_recycler_view.visibility = View.VISIBLE
                 mAdapter.updateListItems(data)
+                //mAdapter.updateListItems(data)
+                //mAdapter.updateListItems(data)
+                //mAdapter.updateListItems(data)
+                //mAdapter.updateListItems(data)
+                //mAdapter.updateListItems(data)
+
 
             }
         })

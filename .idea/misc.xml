@@ -16,6 +16,8 @@
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fav_city_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fav_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fourly_weather_scrolview.xml" value="0.264" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fragment_change_city.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fragment_change_fav_city.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fragment_city_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fragment_city_item_list.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/fragment_current_weather.xml" value="0.25416666666666665" />
@@ -26,6 +28,10 @@
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/hourly_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/hourly_listview.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/hourly_weather_item.xml" value="0.264" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/recyclerview_changecity.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/rv_changecity_item_current_weather.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/rv_changecity_item_daily_weather.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/rv_changecity_item_hourly_weather.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/single_city_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/temp.xml" value="0.13020833333333334" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/temp2.xml" value="0.24295432458697766" />

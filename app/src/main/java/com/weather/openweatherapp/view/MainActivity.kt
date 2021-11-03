@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
 import com.weather.openweatherapp.adapter.HourlyWeatherAdapter
 import com.weather.openweatherapp.databinding.ActivityMainBinding
+import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 //import com.weather.openweatherapp.fragment.current.CurrentWeatherFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.utils.APP_ACTIVITY
@@ -126,6 +127,7 @@ class MainActivity : AppCompatActivity() {
  */
         main_add_fav_city_iv.setOnClickListener {
             replaceFragment(FavCityFragment())
+            //replaceFragment(ChangeCityFragment())
         }
 
 
@@ -146,7 +148,7 @@ class MainActivity : AppCompatActivity() {
         mLayoutManager = LinearLayoutManager(APP_ACTIVITY)
     }
 
-       private fun getLiveData() {
+    fun getLiveData() {
 
            viewModel.weather_data.observe(this, Observer { data ->
                data?.let {
@@ -193,7 +195,7 @@ class MainActivity : AppCompatActivity() {
 
        }//getLiveData
 
-    private fun getLiveDataHourly() {
+    fun getLiveDataHourly() {
 
         viewModel.forecast_weather_data.observe(this, Observer { data ->
             data?.let {
@@ -300,7 +302,7 @@ class MainActivity : AppCompatActivity() {
 
     }//getLiveDataHourly
 
-    private fun getLiveDataDaily() {
+    fun getLiveDataDaily() {
 
         viewModel.forecast_weather_data2.observe(this, Observer { data ->
             data?.let {

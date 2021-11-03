@@ -16,7 +16,7 @@ fun showToast(message:String){
 fun restartActivity(){
     val intent = Intent(APP_ACTIVITY, MainActivity::class.java)
     APP_ACTIVITY.startActivity(intent)
-    APP_ACTIVITY.finish()
+    //APP_ACTIVITY.finish()
 
 }//restartActivity
 
