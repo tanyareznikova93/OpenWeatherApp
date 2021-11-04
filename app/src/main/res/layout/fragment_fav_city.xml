@@ -82,27 +82,23 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/city_recycler_view"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/list_cl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/fav_city_item_layout"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintTop_toBottomOf="@id/search_cl_fav_city"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+            tools:ignore="MissingConstraints"
+            app:layout_constraintTop_toBottomOf="@id/search_cl_fav_city">
 
-        <ImageView
-            android:id="@+id/add_fav_city_iv"
-            style="@style/settings_buttons_add_fav_city"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:layout_margin="1dp"
-            android:padding="2dp"
-            android:src="@drawable/ic_add_done"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:tint="@color/white" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/city_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="270dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/fav_city_item_layout"
+                tools:ignore="MissingConstraints" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/back_iv_from_fav_city"

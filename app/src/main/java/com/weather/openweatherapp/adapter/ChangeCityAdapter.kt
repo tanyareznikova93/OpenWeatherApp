@@ -1,30 +1,15 @@
 package com.weather.openweatherapp.adapter
 
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
-import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
-import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.listFavCity
-import com.weather.openweatherapp.model.forecast.Forecast
-import com.weather.openweatherapp.model.forecast.ForecastModel
 import com.weather.openweatherapp.model.weather.WeatherModel
-import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.replaceFragment
-import com.weather.openweatherapp.utils.restartActivity
-import com.weather.openweatherapp.utils.showToast
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fav_city_item_layout.view.*
-import kotlinx.android.synthetic.main.fragment_change_city.*
 import kotlinx.android.synthetic.main.fragment_change_city.view.*
-import kotlinx.android.synthetic.main.hourly_weather_item.view.*
-import java.util.ArrayList
 
 
 class ChangeCityAdapter(
@@ -33,8 +18,8 @@ class ChangeCityAdapter(
 ) :RecyclerView.Adapter<ChangeCityAdapter.ViewHolder>() {
 
     companion object{
-        const val VIEW_TYPE_FAV_CITY = 0
-        const val VIEW_TYPE_CHANGE_CITY = 1
+        const val VIEW_TYPE_WRITE_TO_DB = 1
+        const val VIEW_TYPE_READ_FROM_DB = 0
     }
 
     private var listItem = mutableListOf<WeatherModel>()
@@ -49,9 +34,9 @@ class ChangeCityAdapter(
 
     override fun getItemViewType(position: Int): Int {
         return if(position == 0){
-            VIEW_TYPE_FAV_CITY
+            VIEW_TYPE_WRITE_TO_DB
         } else {
-            VIEW_TYPE_CHANGE_CITY
+            VIEW_TYPE_READ_FROM_DB
         }
     }//getItemViewType
 
@@ -60,7 +45,7 @@ class ChangeCityAdapter(
         val layoutInflater = LayoutInflater.from(parent.context)
 
         return when(viewType){
-            VIEW_TYPE_FAV_CITY -> {
+            VIEW_TYPE_WRITE_TO_DB -> {
                 ViewHolder.FavCityHolder2(
                     layoutInflater.inflate(R.layout.fav_city_item_layout,parent,false)
                 )

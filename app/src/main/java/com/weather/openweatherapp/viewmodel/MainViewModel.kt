@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.weather.openweatherapp.model.weather.WeatherModel
 import com.weather.openweatherapp.api.WeatherAPIService
-import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

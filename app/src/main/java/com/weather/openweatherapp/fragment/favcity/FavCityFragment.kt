@@ -1,40 +1,30 @@
 package com.weather.openweatherapp.fragment.favcity
 
-import android.content.Context
-import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
 import com.weather.openweatherapp.adapter.FavCityAdapter
-import com.weather.openweatherapp.adapter.HourlyWeatherAdapter
-import com.weather.openweatherapp.databinding.ActivityMainBinding
+import com.weather.openweatherapp.database.CityNameModel
+import com.weather.openweatherapp.database.room.CityEntity
+import com.weather.openweatherapp.database.SQLiteHelper
 import com.weather.openweatherapp.databinding.FragmentFavCityBinding
-import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 import com.weather.openweatherapp.model.weather.WeatherModel
 import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.replaceFragment
 //import com.weather.openweatherapp.utils.replaceActivity
 import com.weather.openweatherapp.utils.restartActivity
 import com.weather.openweatherapp.utils.showToast
-import com.weather.openweatherapp.view.MainActivity
 import com.weather.openweatherapp.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fav_city_item_layout.*
-import kotlinx.android.synthetic.main.fragment_change_city.*
 import kotlinx.android.synthetic.main.fragment_fav_city.*
-import java.util.ArrayList
 
 const val TAG = "FavCityFragment"
 
@@ -53,6 +43,8 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
 
     private var listItem = mutableListOf<WeatherModel>()
     private lateinit var listItemFavCity: WeatherModel
+    private lateinit var sqLiteHelper: SQLiteHelper
+    private lateinit var allCity: MutableLiveData<List<CityEntity>>
 
     /*
     private val itemClickListener: (data: WeatherModel) -> Unit = { dataItem->
@@ -86,6 +78,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
+
         val cName = GET.getString("cityName", "moscow")
         edt_city_name_fav_city.setText(cName)
         //fav_city_item_title_tv.setText(cName)
@@ -95,7 +88,12 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
         //viewModel.refreshForecastData2(cName!!)
 
         initRecyclerView()
+        sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
         getLiveDataFavCity()
+
+        getCity()
+
+        cleanEditText()
 
         /*
         swipe_refresh_layout.setOnRefreshListener {
@@ -132,30 +130,32 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
         }
 
         img_search_fav_city.setOnClickListener {
+
             val cityName = edt_city_name_fav_city.text.toString()
-            //cityName = fav_city_item_title_tv.text.toString()
-            //fav_city_item_title_tv.text = cityName
             SET.putString("cityName", cityName)
-            //SET.putString("cityName", cityName2)
             SET.apply()
-            //if(listFavCity.isEmpty()) showToast("Добавьте город")
-            //else replaceFragment(CreateGroupFragment(listFavCity))
-            //viewModel.refreshData(cityName)
-            //cityName = listItemFavCity.name
-            //mAdapter.updateListItems(listItemFavCity)
             viewModel.refreshDataForFavCity(cityName)
-            //viewModel.refreshForecastData(cityName)
-            //viewModel.refreshForecastData2(cityName)
             initRecyclerView()
             getLiveDataFavCity()
-            //getLiveData()
-            //getLiveDataHourly()
-            //getLiveDataDaily()
             Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
+
+            sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+            val cn = CityNameModel(cityname = cityName)
+            val status = sqLiteHelper.insertCityName(cn)
+            if(status > -1){
+                showToast("Добавлен город - $cityName")
+            }
+
+            cleanEditText()
+
+            //addCity()
+            getCity()
+
             //edt_city_name_fav_city.clearComposingText()
 
         }
 
+        /*
         city_recycler_view.setOnClickListener {
             val cityName = fav_city_item_title_tv.text.toString()
             //cityName = fav_city_item_title_tv.text.toString()
@@ -173,13 +173,19 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
             //viewModel.refreshForecastData2(cityName)
             initRecyclerView()
             getLiveDataFavCity()
-            //getLiveData()
-            //getLiveDataHourly()
-            //getLiveDataDaily()
+
+            //sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+            //val cn = CityNameModel(cityname = cityName)
+            //sqLiteHelper.insertCityName(cn)
+            //sqLiteHelper.getAllCityName()
+
             Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
             //edt_city_name_fav_city.clearComposingText()
         }
 
+         */
+
+        /*
         add_fav_city_iv.setOnClickListener {
             if(cName.isEmpty()){
                 showToast("Введите название города")
@@ -188,9 +194,43 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
             }
         }
 
+         */
+
     }//onViewCreated
 
+    fun addCity(){
 
+        val cityName = edt_city_name_fav_city.text.toString()
+        SET.putString("cityName", cityName)
+        SET.apply()
+
+        viewModel.refreshDataForFavCity(cityName)
+
+        initRecyclerView()
+        //getLiveDataFavCity()
+
+        Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
+
+        sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+        val cn = CityNameModel(cityname = cityName)
+        val status = sqLiteHelper.insertCityName(cn)
+        if(status > -1){
+            showToast("Добавлен город - $cityName")
+        }
+
+        cleanEditText()
+
+    }//addCity
+
+    fun cleanEditText(){
+        edt_city_name_fav_city.setText("")
+    }
+
+    fun getCity(){
+        val cNameList = sqLiteHelper.getAllCityName()
+        showToast("Выведен на экран : ${cNameList.size}")
+        mAdapter.updateCities(cNameList)
+    }
 
     /*
     override fun OnItemClick(item: WeatherModel,position: Int) {
@@ -247,6 +287,21 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
         }
     }//onResume
 
+    /*
+    init {
+        allCity = MutableLiveData()
+    }
+
+    fun getAllCityObservers(): MutableLiveData<List<CityEntity>> {
+        return allCity
+    }
+    fun getAllCity() {
+        val cityDao = RoomAppDb.getAppDatabase((APP_ACTIVITY))?.cityDao()
+        val list = cityDao?.getAllCity()
+    }
+
+     */
+
 
     fun getLiveDataFavCity() {
 
@@ -255,7 +310,11 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) //, FavCityAdapter.
             data?.let {
 
                 city_recycler_view.visibility = View.VISIBLE
+
+                //getCity()
                 mAdapter.updateListItems(data)
+                //mAdapter.updateCities()
+
                 //mAdapter.updateListItems(data)
                 //mAdapter.updateListItems(data)
                 //mAdapter.updateListItems(data)

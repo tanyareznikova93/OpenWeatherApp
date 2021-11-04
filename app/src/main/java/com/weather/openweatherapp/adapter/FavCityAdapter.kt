@@ -13,9 +13,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
+import com.weather.openweatherapp.database.CityNameModel
+import com.weather.openweatherapp.database.SQLiteHelper
 import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.listFavCity
+import com.weather.openweatherapp.fragment.favcity.TAG
 import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
 import com.weather.openweatherapp.model.weather.WeatherModel
@@ -37,11 +40,13 @@ class FavCityAdapter(
 ) :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
 
     private var listItem = mutableListOf<WeatherModel>()
+    private var cnList: ArrayList<CityNameModel> = ArrayList()
     //private var viewModel = MainViewModel()
     //private val changeCityFragment = ChangeCityFragment()
     private lateinit var viewModel: MainViewModel
     private lateinit var GET: SharedPreferences
     private lateinit var SET: SharedPreferences.Editor
+    private lateinit var sqLiteHelper: SQLiteHelper
 
     class FavCityHolder(view: View) : RecyclerView.ViewHolder(view) {
 
@@ -112,6 +117,43 @@ class FavCityAdapter(
 
         holder.itemView.setOnClickListener {
 
+
+            when(cnList[holder.adapterPosition].cityname) {
+                cnList[holder.adapterPosition].cityname -> {
+
+                    val cityName = cnList[holder.adapterPosition].cityname
+                    SET.putString("cityName", cityName)
+                    SET.apply()
+
+                    viewModel.refreshData(cityName)
+                    viewModel.refreshDataForFavCity(cityName)
+                    viewModel.refreshForecastData(cityName)
+                    viewModel.refreshForecastData2(cityName)
+
+                    /*
+                    //write cities to DB
+                    sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+                    val cn = CityNameModel(cityname = cityName)
+                    val status = sqLiteHelper.insertCityName(cn)
+                    if(status > -1){
+                        showToast("Добавлен город - $cityName")
+                    }
+
+                     */
+
+                    //Log.e("favcity", "${cNameList.size}")
+
+                    //show cities from DB
+                    //val cNameList = sqLiteHelper.getAllCityName()
+                    //showToast("Выведен на экран : ${cNameList.size}")
+                    //updateCities(cNameList)
+
+                    replaceFragment(ChangeCityFragment())
+                }
+                //listFavCity[holder.adapterPosition].name -> showToast("${listFavCity[holder.adapterPosition].name}")
+            }
+
+            /*
             when(listFavCity[holder.adapterPosition].name) {
                 listFavCity[holder.adapterPosition].name -> {
 
@@ -123,20 +165,29 @@ class FavCityAdapter(
                     viewModel.refreshDataForFavCity(cityName)
                     viewModel.refreshForecastData(cityName)
                     viewModel.refreshForecastData2(cityName)
-                    //initRecyclerView()
-                    //getLiveDataFavCity()
-                    //getLiveData()
-                    //getLiveDataHourly()
-                    //getLiveDataDaily()
-                    //Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
+
+                    //write cities to DB
+                    sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+                    val cn = CityNameModel(cityname = cityName)
+                    val status = sqLiteHelper.insertCityName(cn)
+                    if(status > -1){
+                        showToast("Добавлен город - $cityName")
+                    }
+
+                    //Log.e("favcity", "${cNameList.size}")
+
+                    //show cities from DB
+                    //val cNameList = sqLiteHelper.getAllCityName()
+                    //showToast("Выведен на экран : ${cNameList.size}")
+                    //updateCities(cNameList)
 
                     replaceFragment(ChangeCityFragment())
                 }
                 //listFavCity[holder.adapterPosition].name -> showToast("${listFavCity[holder.adapterPosition].name}")
             }
+
+             */
         }
-
-
 
 
         //return FavCityHolder(view)
@@ -148,13 +199,15 @@ class FavCityAdapter(
     override fun onBindViewHolder(holder: FavCityHolder, position: Int) {
 
         //holder.itemFavCityTitle.text = listItem[position].name
-        holder.itemFavCityTitle.text = listFavCity[position].name
+        //holder.itemFavCityTitle.text = listFavCity[position].name
+        holder.itemFavCityTitle.text = cnList[position].cityname
         //holder.initFavCity(itemList.get(position), listener)
 
     }//onBindViewHolder
 
     //override fun getItemCount(): Int = listItem.size
-    override fun getItemCount(): Int = listFavCity.size
+    //override fun getItemCount(): Int = listFavCity.size
+    override fun getItemCount(): Int = cnList.size
 
     fun updateListItems(item:WeatherModel){
 
@@ -178,5 +231,10 @@ class FavCityAdapter(
 
 
     }//updateListItems
+
+    fun updateCities(items:ArrayList<CityNameModel>){
+            this.cnList = items
+            notifyItemInserted(cnList.size)
+    }
 
 }//MainListAdapter

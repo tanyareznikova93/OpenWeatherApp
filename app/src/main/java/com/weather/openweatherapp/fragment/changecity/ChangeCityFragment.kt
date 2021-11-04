@@ -34,7 +34,7 @@ import kotlinx.android.synthetic.main.fragment_fav_city.*
 
 const val TAG = "ChangeCityFragment"
 
-class ChangeCityFragment : Fragment(R.layout.recyclerview_changecity) {
+class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     private lateinit var viewModel: MainViewModel
 
