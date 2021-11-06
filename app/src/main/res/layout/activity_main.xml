@@ -91,10 +91,10 @@
                         android:id="@+id/tv_degree"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="55dp"
+                        android:layout_marginTop="35dp"
                         android:text="0 С"
                         android:gravity="center"
-                        android:textSize="65sp"
+                        android:textSize="45sp"
                         />
                     <TextView
                         android:id="@+id/tv_weather_description"

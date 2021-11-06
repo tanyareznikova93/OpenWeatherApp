@@ -4,8 +4,8 @@ import kotlin.random.Random
 
 
 data class CityNameModel(
-    val id: Int = getAutoID(),
-    val cityname:String = ""
+    var id: Int = getAutoID(),
+    var cityname:String = ""
 ){
     companion object {
         fun getAutoID():Int{

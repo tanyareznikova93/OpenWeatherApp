@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
@@ -17,15 +19,13 @@ import com.weather.openweatherapp.database.CityNameModel
 import com.weather.openweatherapp.database.SQLiteHelper
 import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
+import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.cityNameList
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.listFavCity
 import com.weather.openweatherapp.fragment.favcity.TAG
 import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
 import com.weather.openweatherapp.model.weather.WeatherModel
-import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.replaceFragment
-import com.weather.openweatherapp.utils.restartActivity
-import com.weather.openweatherapp.utils.showToast
+import com.weather.openweatherapp.utils.*
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fav_city_item_layout.view.*
@@ -115,80 +115,48 @@ class FavCityAdapter(
 
         viewModel = ViewModelProviders.of(APP_ACTIVITY).get(MainViewModel::class.java)
 
-        holder.itemView.setOnClickListener {
+        holder.itemView.setOnLongClickListener {
 
+            when(cityNameList[holder.adapterPosition].id) {
 
-            when(cnList[holder.adapterPosition].cityname) {
-                cnList[holder.adapterPosition].cityname -> {
-
-                    val cityName = cnList[holder.adapterPosition].cityname
-                    SET.putString("cityName", cityName)
-                    SET.apply()
-
-                    viewModel.refreshData(cityName)
-                    viewModel.refreshDataForFavCity(cityName)
-                    viewModel.refreshForecastData(cityName)
-                    viewModel.refreshForecastData2(cityName)
-
-                    /*
-                    //write cities to DB
+                cityNameList[holder.adapterPosition].id -> {
                     sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
-                    val cn = CityNameModel(cityname = cityName)
-                    val status = sqLiteHelper.insertCityName(cn)
-                    if(status > -1){
-                        showToast("Добавлен город - $cityName")
-                    }
-
-                     */
-
-                    //Log.e("favcity", "${cNameList.size}")
-
-                    //show cities from DB
-                    //val cNameList = sqLiteHelper.getAllCityName()
-                    //showToast("Выведен на экран : ${cNameList.size}")
-                    //updateCities(cNameList)
-
-                    replaceFragment(ChangeCityFragment())
+                    //replaceFragment(FavCityFragment())
+                    deleteCities(cityNameList[holder.adapterPosition].id)
+                    replaceFragment(FavCityFragment())
+                    //updateCities(cnList)
+                    //getCity()
+                    return@setOnLongClickListener true
                 }
-                //listFavCity[holder.adapterPosition].name -> showToast("${listFavCity[holder.adapterPosition].name}")
+
+                else -> return@setOnLongClickListener false
+
             }
-
-            /*
-            when(listFavCity[holder.adapterPosition].name) {
-                listFavCity[holder.adapterPosition].name -> {
-
-                    val cityName = listFavCity[holder.adapterPosition].name
-                    SET.putString("cityName", cityName)
-                    SET.apply()
-
-                    viewModel.refreshData(cityName)
-                    viewModel.refreshDataForFavCity(cityName)
-                    viewModel.refreshForecastData(cityName)
-                    viewModel.refreshForecastData2(cityName)
-
-                    //write cities to DB
-                    sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
-                    val cn = CityNameModel(cityname = cityName)
-                    val status = sqLiteHelper.insertCityName(cn)
-                    if(status > -1){
-                        showToast("Добавлен город - $cityName")
-                    }
-
-                    //Log.e("favcity", "${cNameList.size}")
-
-                    //show cities from DB
-                    //val cNameList = sqLiteHelper.getAllCityName()
-                    //showToast("Выведен на экран : ${cNameList.size}")
-                    //updateCities(cNameList)
-
-                    replaceFragment(ChangeCityFragment())
-                }
-                //listFavCity[holder.adapterPosition].name -> showToast("${listFavCity[holder.adapterPosition].name}")
-            }
-
-             */
         }
 
+        holder.itemView.setOnClickListener {
+
+            when (cityNameList[holder.adapterPosition].cityname) {
+                cityNameList[holder.adapterPosition].cityname -> {
+
+                    val cityName = cityNameList[holder.adapterPosition].cityname
+                    SET.putString("cityName", cityName)
+                    SET.apply()
+
+                    viewModel.refreshData(cityName)
+                    viewModel.refreshDataForFavCity(cityName)
+                    viewModel.refreshForecastData(cityName)
+                    viewModel.refreshForecastData2(cityName)
+
+                    //updateCities(cityNameList)
+                    //getCity()
+                    //sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+                    //deleteCities(cnList[holder.adapterPosition].id)
+
+                    replaceFragment(ChangeCityFragment())
+                }
+            }
+        }
 
         //return FavCityHolder(view)
 
@@ -200,25 +168,18 @@ class FavCityAdapter(
 
         //holder.itemFavCityTitle.text = listItem[position].name
         //holder.itemFavCityTitle.text = listFavCity[position].name
-        holder.itemFavCityTitle.text = cnList[position].cityname
+        holder.itemFavCityTitle.text = cityNameList[position].cityname
         //holder.initFavCity(itemList.get(position), listener)
 
     }//onBindViewHolder
 
     //override fun getItemCount(): Int = listItem.size
     //override fun getItemCount(): Int = listFavCity.size
-    override fun getItemCount(): Int = cnList.size
+    override fun getItemCount(): Int = cityNameList.size
 
     fun updateListItems(item:WeatherModel){
 
-        /*
-        if(!listItem.contains(item)) {
-            listItem.add(item)
-            //listItem.addAll(listOf(item))
-            notifyItemInserted(listItem.size)
-        }
 
-         */
 
         if(!listFavCity.contains(item)) {
             listFavCity.add(item)
@@ -226,15 +187,67 @@ class FavCityAdapter(
             notifyItemInserted(listFavCity.size)
         }
 
+
         //itemList.add(item)
         //notifyItemInserted(itemList.size)
 
 
     }//updateListItems
 
+    /*
     fun updateCities(items:ArrayList<CityNameModel>){
-            this.cnList = items
-            notifyItemInserted(cnList.size)
+        this.cnList = items
+        notifyItemInserted(cnList.size)
+    }//updateCities
+
+     */
+
+    fun updateCities(items: MutableList<CityNameModel>){
+
+            cityNameList = items
+            notifyItemInserted(cityNameList.size)
+
+    }//updateCities
+
+    fun deleteCities(id:Int){
+
+        if(id == null) return
+
+            sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+            sqLiteHelper.deleteCityById(id)
+
+    }//deleteCities
+
+    /*
+    fun deleteCities(id:Int){
+        if(id == null) return
+
+        val builder = AlertDialog.Builder(APP_ACTIVITY)
+        builder.setMessage("Удалить город из избранного?")
+        builder.setCancelable(true)
+
+        builder.setPositiveButton("Да"){dialog, _ ->
+            sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
+            sqLiteHelper.deleteCityById(id)
+            //getCity()
+            dialog.dismiss()
+        }
+        builder.setNegativeButton("Нет"){dialog, _ ->
+            dialog.cancel()
+        }
+        val alert = builder.create()
+        alert.show()
+    }//deleteCities
+
+     */
+
+
+    fun getCity(){
+        val cNameList = sqLiteHelper.getAllCityName()
+        showToast("Выведен на экран : ${cNameList.size}")
+        updateCities(cNameList)
     }
+
+
 
 }//MainListAdapter

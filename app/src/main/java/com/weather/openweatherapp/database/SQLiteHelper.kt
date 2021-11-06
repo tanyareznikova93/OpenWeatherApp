@@ -11,16 +11,18 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
 
     companion object {
         private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "citydb.db"
-        private const val TABLE_CITY = "tbl_city"
+        private const val DATABASE_NAME = "citiesDB.db"
+        private const val TABLE_CITY = "tbl_cities"
         private const val ID = "id"
         private const val CITYNAME = "cityname"
     }
 
+    //private var isSuccess:Boolean = false
+
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableCity = ("CREATE TABLE " + TABLE_CITY + "("
-                + ID + " INTEGER PRIMARY KEY," + CITYNAME + " TEXT"
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + CITYNAME + " TEXT UNIQUE"
                 + ")")
         db?.execSQL(createTableCity)
     }//onCreate
@@ -79,6 +81,7 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
 
     }//getAllCityName
 
+
     fun updateCity(cn: CityNameModel): Int {
 
         val db = this.writableDatabase
@@ -92,5 +95,61 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         return success
 
     }//updateCity
+
+    /*
+    fun insertOrReplaceCity(cn: CityNameModel): Int {
+
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID,cn.id)
+        contentValues.put(CITYNAME,cn.cityname)
+
+        val success =  db.update(TABLE_CITY, contentValues, "id=?" + cn.id, arrayOf(cn.cityname))
+        showToast("Обновлен город - ${cn.cityname}")
+
+        if( success == 0){
+            //isSuccess = true
+            db.insert(TABLE_CITY, null, contentValues)
+            showToast("Добавлен город - ${cn.cityname}")
+        }
+
+        db.close()
+        return success
+
+    }//insertOrReplaceCity
+
+     */
+
+    /*
+    fun replaceCityName(cn:CityNameModel): Long {
+
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID,cn.id)
+        contentValues.put(CITYNAME,cn.cityname)
+
+        val success = db.update(TABLE_CITY, contentValues, "id=" + cn.id, null)
+        db.close()
+        return success.toLong()
+
+    }//replaceCityName
+
+     */
+
+    fun deleteCityById(id:Int): Int {
+
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(ID,id)
+
+        val success = db.delete(TABLE_CITY, "id=$id", null)
+        //db!!.execSQL("DELETE FROM $TABLE_CITY")
+        db.close()
+        return success
+
+    }//deleteCityById
 
 }//SQLiteHelper
