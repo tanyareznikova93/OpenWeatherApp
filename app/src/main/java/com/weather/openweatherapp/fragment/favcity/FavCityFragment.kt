@@ -27,7 +27,9 @@ import com.weather.openweatherapp.utils.*
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.fav_city_item_layout.*
 import kotlinx.android.synthetic.main.fragment_fav_city.*
-import java.util.ArrayList
+import java.text.SimpleDateFormat
+import java.util.*
+import java.util.Locale.*
 
 const val TAG = "FavCityFragment"
 

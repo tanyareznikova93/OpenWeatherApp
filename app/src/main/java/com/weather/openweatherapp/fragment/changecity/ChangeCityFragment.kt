@@ -17,7 +17,10 @@ import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.model.weather.WeatherModel
 import com.weather.openweatherapp.utils.*
 import com.weather.openweatherapp.viewmodel.MainViewModel
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_change_city.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 const val TAG = "ChangeCityFragment"
 
@@ -242,7 +245,10 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
                 data_daily_ll_current_change_city.visibility = View.VISIBLE
 
                 //daily_item_layout_tv.text = data.city.name
-                tv_date_time_daily_current_change_city.text = data.list[8].dtTxt + " |"
+                //tv_date_time_daily_current_change_city.text = data.list[8].dtTxt + " |"
+                val date:Long = data.list[8].dt.toLong()
+                tv_date_time_daily_current_change_city.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault())
+                    .format(Date(date*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[8].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_current_change_city)
@@ -251,7 +257,10 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
                 data_daily_ll2_current_change_city.visibility = View.VISIBLE
 
-                tv_date_time_daily_2_current_change_city.text = data.list[16].dtTxt + " |"
+                //tv_date_time_daily_2_current_change_city.text = data.list[16].dtTxt + " |"
+                val date2:Long = data.list[16].dt.toLong()
+                tv_date_time_daily_2_current_change_city.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault())
+                    .format(Date(date2*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[16].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_2_current_change_city)
@@ -260,7 +269,10 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
                 data_daily_ll3_current_change_city.visibility = View.VISIBLE
 
-                tv_date_time_daily_3_current_change_city.text = data.list[24].dtTxt + " |"
+                //tv_date_time_daily_3_current_change_city.text = data.list[24].dtTxt + " |"
+                val date3:Long = data.list[24].dt.toLong()
+                tv_date_time_daily_3_current_change_city.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault())
+                    .format(Date(date3*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[24].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_3_current_change_city)
@@ -269,7 +281,10 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
                 data_daily_ll4_current_change_city.visibility = View.VISIBLE
 
-                tv_date_time_daily_4_current_change_city.text = data.list[32].dtTxt + " |"
+                //tv_date_time_daily_4_current_change_city.text = data.list[32].dtTxt + " |"
+                val date4:Long = data.list[32].dt.toLong()
+                tv_date_time_daily_4_current_change_city.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault())
+                    .format(Date(date4*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[32].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_4_current_change_city)

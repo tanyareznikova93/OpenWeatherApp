@@ -14,6 +14,8 @@ import com.weather.openweatherapp.utils.APP_ACTIVITY
 import com.weather.openweatherapp.utils.asTime
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.hourly_weather_item.view.*
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class HourlyWeatherAdapter :RecyclerView.Adapter<HourlyWeatherAdapter.HourlyWeatherHolder>() {
@@ -37,7 +39,10 @@ class HourlyWeatherAdapter :RecyclerView.Adapter<HourlyWeatherAdapter.HourlyWeat
 
     override fun onBindViewHolder(holder: HourlyWeatherHolder, position: Int) {
 
-        holder.itemDateTime.text = listItem[position].list[position].dtTxt
+        val date:Long = listItem[position].list[position].dt.toLong()
+        holder.itemDateTime.text = SimpleDateFormat("HH:mm", Locale.getDefault()).format(Date(date*1000))
+
+        //holder.itemDateTime.text = listItem[position].list[position].dtTxt
         Glide.with(holder.itemImage)
             .load("https://openweathermap.org/img/wn/" + listItem[position].list[position].weather.get(0).icon + "@2x.png")
             .placeholder(android.R.drawable.progress_indeterminate_horizontal)

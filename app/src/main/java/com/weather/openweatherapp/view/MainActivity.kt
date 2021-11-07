@@ -24,6 +24,7 @@ import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.data_daily_ll
 import kotlinx.android.synthetic.main.hourly_weather_item.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 const val TAG = "MainActivity"
@@ -218,7 +219,10 @@ class MainActivity : AppCompatActivity() {
             data?.let {
                 data_daily_ll.visibility = View.VISIBLE
 
-                tv_date_time_daily.text = data.list[8].dtTxt
+                val date:Long = data.list[8].dt.toLong()
+                //val date:Long = data.list[8].dtTxt.toLong()
+                tv_date_time_daily.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault()).format(Date(date*1000)).toUpperCase()
+                //tv_date_time_daily.text = data.list[8].dtTxt
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[8].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily)
@@ -227,7 +231,9 @@ class MainActivity : AppCompatActivity() {
 
                 data_daily_ll2.visibility = View.VISIBLE
 
-                tv_date_time_daily_2.text = data.list[16].dtTxt
+                //tv_date_time_daily_2.text = data.list[16].dtTxt
+                val date2:Long = data.list[16].dt.toLong()
+                tv_date_time_daily_2.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault()).format(Date(date2*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[16].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_2)
@@ -236,7 +242,9 @@ class MainActivity : AppCompatActivity() {
 
                 data_daily_ll3.visibility = View.VISIBLE
 
-                tv_date_time_daily_3.text = data.list[24].dtTxt
+                //tv_date_time_daily_3.text = data.list[24].dtTxt
+                val date3:Long = data.list[24].dt.toLong()
+                tv_date_time_daily_3.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault()).format(Date(date3*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[24].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_3)
@@ -245,7 +253,9 @@ class MainActivity : AppCompatActivity() {
 
                 data_daily_ll4.visibility = View.VISIBLE
 
-                tv_date_time_daily_4.text = data.list[32].dtTxt
+                //tv_date_time_daily_4.text = data.list[32].dtTxt
+                val date4:Long = data.list[32].dt.toLong()
+                tv_date_time_daily_4.text = SimpleDateFormat("EEE, d  MMM", Locale.getDefault()).format(Date(date4*1000)).toUpperCase()
                 Glide.with(this)
                     .load("https://openweathermap.org/img/wn/" + data.list[32].weather.get(0).icon + "@2x.png")
                     .into(img_weather_pictures_daily_4)
