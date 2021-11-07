@@ -17,8 +17,6 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         private const val CITYNAME = "cityname"
     }
 
-    //private var isSuccess:Boolean = false
-
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableCity = ("CREATE TABLE " + TABLE_CITY + "("
@@ -49,7 +47,7 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
     fun getAllCityName(): ArrayList<CityNameModel>{
 
         val cnList:ArrayList<CityNameModel> = ArrayList()
-        val selectQuery = "SELECT  * FROM $TABLE_CITY"
+        val selectQuery = "SELECT  * FROM $TABLE_CITY ORDER BY $CITYNAME ASC"
         //val selectQuery = "SELECT  * FROM " + TABLE_CITY
         val db = this.readableDatabase
 
@@ -95,48 +93,6 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
         return success
 
     }//updateCity
-
-    /*
-    fun insertOrReplaceCity(cn: CityNameModel): Int {
-
-        val db = this.writableDatabase
-
-        val contentValues = ContentValues()
-        contentValues.put(ID,cn.id)
-        contentValues.put(CITYNAME,cn.cityname)
-
-        val success =  db.update(TABLE_CITY, contentValues, "id=?" + cn.id, arrayOf(cn.cityname))
-        showToast("Обновлен город - ${cn.cityname}")
-
-        if( success == 0){
-            //isSuccess = true
-            db.insert(TABLE_CITY, null, contentValues)
-            showToast("Добавлен город - ${cn.cityname}")
-        }
-
-        db.close()
-        return success
-
-    }//insertOrReplaceCity
-
-     */
-
-    /*
-    fun replaceCityName(cn:CityNameModel): Long {
-
-        val db = this.writableDatabase
-
-        val contentValues = ContentValues()
-        contentValues.put(ID,cn.id)
-        contentValues.put(CITYNAME,cn.cityname)
-
-        val success = db.update(TABLE_CITY, contentValues, "id=" + cn.id, null)
-        db.close()
-        return success.toLong()
-
-    }//replaceCityName
-
-     */
 
     fun deleteCityById(id:Int): Int {
 

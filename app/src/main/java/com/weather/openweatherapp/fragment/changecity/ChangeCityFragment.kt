@@ -23,10 +23,7 @@ import com.weather.openweatherapp.databinding.FragmentFavCityBinding
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.listFavCity
 import com.weather.openweatherapp.model.weather.WeatherModel
-import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.replaceFragment
-import com.weather.openweatherapp.utils.restartActivity
-import com.weather.openweatherapp.utils.showToast
+import com.weather.openweatherapp.utils.*
 import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_change_city.*
@@ -157,7 +154,7 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     }//initRecyclerView
 
-    fun getLiveDataCurrentForChangeCity() {
+    private fun getLiveDataCurrentForChangeCity() {
 
         viewModel.weather_data.observe(viewLifecycleOwner, Observer { data ->
             data?.let {
@@ -202,7 +199,7 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     }//getLiveDataCurrentForChangeCity
 
-    fun getLiveDataHourlyForChangeCity() {
+    private fun getLiveDataHourlyForChangeCity() {
 
         viewModel.forecast_weather_data.observe(viewLifecycleOwner, Observer { data ->
             data?.let {
@@ -248,7 +245,7 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     }//getLiveDataHourlyForChangeCity
 
-    fun getLiveDataDailyForChangeCity() {
+    private fun getLiveDataDailyForChangeCity() {
 
         viewModel.forecast_weather_data2.observe(viewLifecycleOwner, Observer { data ->
             data?.let {

@@ -8,7 +8,11 @@
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable-v24/ripple_effect.xml" value="0.2703125" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable-v24/ripple_effect2.xml" value="0.2703125" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable-v24/ripple_effect_add_fav_city.xml" value="0.2703125" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable/change_city_ripple_effect.xml" value="0.2703125" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable/main_ripple_effect.xml" value="0.2703125" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable/ripple_effect_favcity_item.xml" value="0.2703125" />
+        <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/drawable/search_btn_ripple_effect.xml" value="0.2703125" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/daily_item_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/tanya/AndroidStudioProjects/OpenWeatherApp/app/src/main/res/layout/daily_weather_item.xml" value="0.264" />

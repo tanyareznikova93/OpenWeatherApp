@@ -46,7 +46,7 @@
                 android:id="@+id/main_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#4DFFFFFF"
+                style="@style/settings_main"
                 android:padding="5dp"
                 android:orientation="horizontal">
 
@@ -54,16 +54,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#55FFFFFF"
+                style="@style/settings_buttons_input"
                 app:endIconMode="clear_text">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/edt_city_name_fav_city"
+                    style="@style/settings_buttons_input"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
                     android:maxLines="1"
                     android:hint="Введите город..."
+                    android:backgroundTint="#2A91E3"
                     android:lines="1"
                     />
 
@@ -71,10 +73,12 @@
 
             <ImageView
                 android:id="@+id/img_search_fav_city"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:padding="10dp"
-                android:src="@drawable/ic_baseline_search_24"
+                style="@style/settings_buttons_search"
+                android:layout_width="55dp"
+                android:layout_height="55dp"
+                android:padding="5dp"
+                android:backgroundTint="@color/white"
+                android:src="@drawable/ic_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
@@ -85,16 +89,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/list_cl"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             tools:ignore="MissingConstraints"
-            app:layout_constraintTop_toBottomOf="@id/search_cl_fav_city">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_cl_fav_city"
+            app:layout_constraintBottom_toTopOf="@id/back_iv_from_fav_city">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/city_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="270dp"
+                android:layout_height="0dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
                 tools:listitem="@layout/fav_city_item_layout"
                 tools:ignore="MissingConstraints" />
 
