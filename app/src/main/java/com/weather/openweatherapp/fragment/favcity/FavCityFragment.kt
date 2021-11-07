@@ -120,10 +120,13 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
         sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
         val cn = CityNameModel(cityname = cityName)
         val status = sqLiteHelper.insertCityName(cn)
+        /*
         if(status > -1){
-            showToast("Добавлен город - $cityName")
-            cleanEditText()
+            //showToast("Добавлен город - $cityName")
+            //cleanEditText()
         }
+
+         */
 
     }//addCity
 
@@ -132,11 +135,14 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
         sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
         val cnm = CityNameModel(id = cn.id,cityname = cn.cityname)
         val status = sqLiteHelper.updateCity(cnm)
+        /*
         if(status > -1){
-            showToast("Обновлен город - ${cnm.cityname}")
-            cleanEditText()
+            //showToast("Обновлен город - ${cnm.cityname}")
+            //cleanEditText()
             //getCity()
         }
+
+         */
 
     }//updateCities
 
@@ -152,7 +158,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
 
     private fun getCity(){
         val cNameList = sqLiteHelper.getAllCityName()
-        showToast("Выведен на экран : ${cNameList.size}")
+        //showToast("Выведен на экран : ${cNameList.size}")
         //mAdapter.updateCities(cNameList)
         mAdapter.updateCities(cNameList)
     }

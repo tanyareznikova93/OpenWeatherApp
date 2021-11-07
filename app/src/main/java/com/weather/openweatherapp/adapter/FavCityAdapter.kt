@@ -136,7 +136,7 @@ class FavCityAdapter :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
 
     fun getCity(){
         val cNameList = sqLiteHelper.getAllCityName()
-        showToast("Выведен на экран : ${cNameList.size}")
+        //showToast("Выведен на экран : ${cNameList.size}")
         updateCities(cNameList)
     }
 

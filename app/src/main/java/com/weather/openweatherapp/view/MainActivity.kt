@@ -24,6 +24,7 @@ import com.weather.openweatherapp.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.data_daily_ll
 import kotlinx.android.synthetic.main.hourly_weather_item.*
+import java.util.*
 
 const val TAG = "MainActivity"
 
@@ -52,6 +53,8 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
+        //val cName = GET.getString("cityName", "moscow")?.toLowerCase()
+        //val cName = GET.getString("cityName", "moscow")?.lowercase(Locale.getDefault())
         val cName = GET.getString("cityName", "moscow")
         edt_city_name.setText(cName)
         viewModel.refreshData(cName!!)

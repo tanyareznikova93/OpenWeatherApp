@@ -2,32 +2,22 @@ package com.weather.openweatherapp.fragment.changecity
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.ConcatAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.weather.openweatherapp.R
-import com.weather.openweatherapp.adapter.ChangeCityAdapter
-import com.weather.openweatherapp.adapter.FavCityAdapter
 import com.weather.openweatherapp.adapter.HourlyWeatherAdapter
 import com.weather.openweatherapp.databinding.FragmentChangeCityBinding
-import com.weather.openweatherapp.databinding.FragmentFavCityBinding
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
-import com.weather.openweatherapp.fragment.favcity.FavCityFragment.Companion.listFavCity
 import com.weather.openweatherapp.model.weather.WeatherModel
 import com.weather.openweatherapp.utils.*
 import com.weather.openweatherapp.viewmodel.MainViewModel
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_change_city.*
-import kotlinx.android.synthetic.main.fragment_fav_city.*
 
 const val TAG = "ChangeCityFragment"
 
