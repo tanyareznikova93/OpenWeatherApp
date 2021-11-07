@@ -1,6 +1,9 @@
 # OpenWeatherApp
 ТЗ Mobile
 Screenshots
+<img src="screenshots/Screenshot_main.jpg" width="400" height="700"/>
+<img src="screenshots/Screenshot_favcity.jpg" width="400" height="700"/>
+<img src="screenshots/Screenshot_changecity.jpg" width="400" height="700"/>
 ![](screenshots/Screenshot_main.jpg)
 ![](screenshots/Screenshot_favcity.jpg)
 ![](screenshots/Screenshot_changecity.jpg)
