@@ -6,7 +6,7 @@
 
 Screenshots
 
-<img src="screenshots/Screenshot_main.jpg" width="300" height="700"/> <img src="screenshots/Screenshot_favcity.jpg" width="300" height="700"/> <img src="screenshots/Screenshot_changecity.jpg" width="300" height="700"/>
+<img src="screenshots/Screenshot_main.jpg" width="250" height="500"/> <img src="screenshots/Screenshot_favcity.jpg" width="250" height="500"/> <img src="screenshots/Screenshot_changecity.jpg" width="250" height="500"/>
 
 В приложении можно:
 - искать погоду по названию города
