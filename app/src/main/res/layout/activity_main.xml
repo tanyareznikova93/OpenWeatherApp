@@ -64,7 +64,7 @@
                         android:layout_height="wrap_content"
                         android:inputType="text"
                         android:maxLines="1"
-                        android:hint="Введите город..."
+                        android:hint="@string/main_hint_current_weather_input_city"
                         android:backgroundTint="#2A91E3"
                         android:textColor="@color/white"
                         android:lines="1" />
@@ -98,7 +98,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="35dp"
-                        android:text="0 С"
+                        android:text="@string/main_current_weather_temp"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:textSize="45sp"
@@ -108,7 +108,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="5dp"
-                        android:text="Облачно"
+                        android:text="@string/main_current_weather_description"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:textSize="17sp"/>
@@ -120,7 +120,7 @@
                         android:gravity="center"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:text="Влажность"/>
+                        android:text="@string/main_current_weather_humidity"/>
 
                     <TextView
                         android:id="@+id/tv_wind_speed"
@@ -129,7 +129,7 @@
                         android:gravity="center"
                         android:textSize="15sp"
                         android:textColor="@color/white"
-                        android:text="Ветер" />
+                        android:text="@string/main_current_weather_wind" />
 
                 <LinearLayout
                     style="@style/settings_main"
@@ -144,7 +144,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
                             android:textColor="@color/white"
-                            android:text="Название города"
+                            android:text="@string/main_current_weather_cityname"
                             android:layout_gravity="center_vertical|center_horizontal"
                             android:textSize="20sp" />
 
@@ -160,7 +160,7 @@
                     android:id="@+id/main_hor_cl"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
+                    android:layout_marginTop="5dp">
 
                     <TextView
                         android:id="@+id/tv_error_hourly"
@@ -203,8 +203,7 @@
                     android:id="@+id/main_ver_cl"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    >
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_error_daily"
@@ -234,6 +233,9 @@
                         android:id="@+id/scrollview_hourly"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fillViewport="true"
+                        android:measureAllChildren="false"
+                        android:scrollbars="none"
                         tools:ignore="MissingConstraints">
 
                         <LinearLayout
@@ -242,7 +244,7 @@
                             android:layout_height="wrap_content"
                             style="@style/settings_main"
                             android:orientation="horizontal"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="5dp"
                             tools:ignore="MissingConstraints">
 
                             <LinearLayout
@@ -260,7 +262,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_weight="1"
                                     android:textColor="@color/white"
-                                    android:text="Дата"
+                                    android:text="@string/main_daily_weather_date"
                                     android:textSize="14sp" />
 
                                 <ImageView
@@ -278,7 +280,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_weight="1"
                                     android:textColor="@color/white"
-                                    android:text="Температура/"
+                                    android:text="@string/main_daily_weather_temp"
                                     android:textSize="14sp" />
 
                                 <TextView
@@ -288,7 +290,7 @@
                                     android:layout_gravity="center_horizontal"
                                     android:layout_weight="1"
                                     android:textColor="@color/white"
-                                    android:text="Ветер"
+                                    android:text="@string/main_daily_weather_wind"
                                     android:textSize="14sp" />
 
                             </LinearLayout>
@@ -306,7 +308,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Дата"
+                                    android:text="@string/main_daily_weather_date2"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -322,7 +324,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Температура/"
+                                    android:text="@string/main_daily_weather_temp2"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -331,7 +333,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Ветер"
+                                    android:text="@string/main_daily_weather_wind2"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -350,7 +352,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Дата"
+                                    android:text="@string/main_daily_weather_date3"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -366,7 +368,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Температура/"
+                                    android:text="@string/main_daily_weather_temp3"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -375,7 +377,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Ветер"
+                                    android:text="@string/main_daily_weather_wind3"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -394,7 +396,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Дата"
+                                    android:text="@string/main_daily_weather_date4"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -410,7 +412,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Температура/"
+                                    android:text="@string/main_daily_weather_temp4"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -419,7 +421,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center_horizontal"
-                                    android:text="Ветер"
+                                    android:text="@string/main_daily_weather_wind4"
                                     android:textColor="@color/white"
                                     android:textSize="14sp" />
 
@@ -442,7 +444,6 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:tint="@color/white"
                         tools:ignore="MissingConstraints" />
-
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

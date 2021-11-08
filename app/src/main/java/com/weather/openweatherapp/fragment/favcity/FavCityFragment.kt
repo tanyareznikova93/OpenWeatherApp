@@ -45,11 +45,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
     private lateinit var mAdapter: FavCityAdapter
     private lateinit var mLayoutManager: LinearLayoutManager
 
-    private var listItem = mutableListOf<WeatherModel>()
-    private lateinit var listItemFavCity: WeatherModel
     private lateinit var sqLiteHelper: SQLiteHelper
-    private lateinit var cn: CityNameModel
-    var cnList = ArrayList<CityNameModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,23 +60,16 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-
         val cName = GET.getString("cityName", "moscow")
         edt_city_name_fav_city.setText(cName)
-        //fav_city_item_title_tv.setText(cName)
 
         viewModel.refreshDataForFavCity(cName!!)
-        //viewModel.refreshData(cName!!)
-        //viewModel.refreshForecastData(cName!!)
-        //viewModel.refreshForecastData2(cName!!)
 
         initRecyclerView()
         sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
         getLiveDataFavCity()
 
         getCity()
-        //cleanEditText()
-        cn = CityNameModel()
 
         swipe_refresh_fav_city.setOnRefreshListener {
             city_recycler_view.visibility = View.GONE
@@ -94,6 +83,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
             swipe_refresh_fav_city.isRefreshing = false
         }
 
+
         img_search_fav_city.setOnClickListener {
 
             val cityName = edt_city_name_fav_city.text.toString()
@@ -104,11 +94,9 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
             viewModel.refreshDataForFavCity(cityName)
             getLiveDataFavCity()
 
-            cn.cityname = cityName
-
-            addCity(cityName)
-            cleanEditText()
-            getCity()
+                addCity(cityName)
+                cleanEditText()
+                getCity()
 
             Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
             hideKeyboard()
@@ -117,18 +105,14 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
 
     }//onViewCreated
 
+    //insert city to DB
     private fun addCity(cityName:String){
 
         sqLiteHelper = SQLiteHelper(APP_ACTIVITY)
         val cn = CityNameModel(cityname = cityName)
-        val status = sqLiteHelper.insertCityName(cn)
-        /*
-        if(status > -1){
-            //showToast("Добавлен город - $cityName")
-            //cleanEditText()
-        }
-
-         */
+        if(cityName != ""){
+            sqLiteHelper.insertCityName(cn)
+        }//if
 
     }//addCity
 
@@ -155,15 +139,15 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
 
     fun cleanEditText(){
         edt_city_name_fav_city.setText("")
-    }
+    }//cleanEditText
 
-
+    //display all city names from DB
     private fun getCity(){
         val cNameList = sqLiteHelper.getAllCityName()
         //showToast("Выведен на экран : ${cNameList.size}")
         //mAdapter.updateCities(cNameList)
         mAdapter.updateCities(cNameList)
-    }
+    }//getCity
 
     private fun initRecyclerView() {
         mRecyclerView = city_recycler_view
@@ -180,6 +164,7 @@ class FavCityFragment : Fragment(R.layout.fragment_fav_city) {
         }
     }//onResume
 
+    //list of cities
     fun getLiveDataFavCity() {
 
         //viewLifecycleOwner

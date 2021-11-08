@@ -11,7 +11,6 @@ import com.weather.openweatherapp.R
 import com.weather.openweatherapp.model.forecast.Forecast
 import com.weather.openweatherapp.model.forecast.ForecastModel
 import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.asTime
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.hourly_weather_item.view.*
 import java.text.SimpleDateFormat

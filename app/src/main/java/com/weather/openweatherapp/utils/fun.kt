@@ -46,20 +46,6 @@ fun hideKeyboard() {
     imm.hideSoftInputFromWindow(APP_ACTIVITY.window.decorView.windowToken,0)
 }//hideKeyboard
 
-//Получаем время отправки погоды
-fun String.asTime(): String {
-    val time = Date(this.toLong())
-    val timeFormat = SimpleDateFormat("HH:mm", Locale.getDefault())
-    return timeFormat.format(time)
-}//String.asTime()
-
-//Получаем дату отправки погоды
-fun String.asDate(): String {
-    val date = Date(this.toLong())
-    val timeFormat = SimpleDateFormat("EEE, MMM d", Locale.getDefault())
-    return timeFormat.format(date)
-}//String.asDate()
-
 
 
 

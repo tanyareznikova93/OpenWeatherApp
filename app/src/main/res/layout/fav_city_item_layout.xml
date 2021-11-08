@@ -10,7 +10,7 @@
         android:id="@+id/fav_city_item_title_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Название города"
+        android:text="@string/favcity_item_cityname"
         android:textColor="@color/white"
         android:padding="7dp"
         android:layout_margin="2dp"

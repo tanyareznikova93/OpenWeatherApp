@@ -36,97 +36,28 @@ interface WeatherAPI {
 
     //api.openweathermap.org/data/2.5/forecast/daily?q=moscow&cnt=7&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru
 
-    //Получаем данные для поиска погоды по стране
+    //Получаем данные для поиска погоды по стране (CURRENT)
     @GET("data/2.5/weather?&units=metric&exclude=hourly,daily&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getData(
         @Query("q") cityName: String
     ): Single<WeatherModel>
 
-    //Получаем данные для поиска погоды по стране
+    //Получаем данные для поиска погоды по стране (for fav city)
     @GET("data/2.5/weather?&units=metric&exclude=hourly,daily&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getDataForFavCity(
         @Query("q") cityName: String
     ): Single<WeatherModel>
 
-    //Получаем данные для поиска погоды по стране
+    //Получаем данные для поиска погоды по стране (forecast hourly)
     @GET("data/2.5/forecast?&units=metric&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getDataFromForecast(
         @Query("q") cityName: String
     ): Single<ForecastModel>
 
-    //Получаем данные для поиска погоды по стране
+    //Получаем данные для поиска погоды по стране (forecast daily)
     @GET("data/2.5/forecast?&units=metric&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
     fun getDataFromForecast2(
         @Query("q") cityName: String
     ): Single<ForecastModel>
 
-
-
-
-    /*
-    //Получаем данные для поиска погоды по стране
-    @GET("data/2.5/forecast?&units=metric&cnt=7&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getHourlyDataFromForecast(
-        @Query("q") cityName: String
-    ): Single<ForecastModel>
-
-    //Получаем данные для поиска погоды по стране
-    @GET("data/2.5/forecast?&units=metric&cnt=7&APPID=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getDailyDataFromForecast(
-        @Query("q") cityName: String
-    ): Single<ForecastModel>
-
-     */
-
-
-/*
-    //Получаем сразу все данные "lon":37.6156,"lat":55.7522
-    @GET("data/2.5/onecall?&units=metric&exclude=current&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getAllData(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<CurrentWeather>
-
-    @GET("data/2.5/onecall?&units=metric&exclude=current&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getAllDataDaily(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<Daily>
-
-    @GET("data/2.5/onecall?&units=metric&exclude=current&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getAllDataHourly(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<Hourly>
-
-
-
-    @GET("data/2.5/onecall?&units=metric&exclude=current,hourly&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getDailyData(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<DailyWeatherModel>
-
-    @GET("data/2.5/onecall?&units=metric&exclude=current,daily&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getHourlyData(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<HourlyWeatherModel>
-
-    @GET("data/2.5/onecall?&units=metric&exclude=hourly,daily&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getCurrentData(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<CurrentWeatherModel>
-
-
-    @GET("data/2.5/onecall?&units=metric&appid=461a6dc9004e4d04325d854e78571ab7&lang=ru")
-    fun getAllWeatherData(
-        @Query("lat") latCity: String,
-        @Query("lon") lonCity: String
-    ): Single<AllWeatherModel>
-
-
-
- */
 }

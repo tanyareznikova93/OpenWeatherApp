@@ -52,11 +52,6 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
-        //initRecyclerView()
-        //APP_ACTIVITY.getLiveData()
-        //APP_ACTIVITY.getLiveDataHourly()
-        //APP_ACTIVITY.getLiveDataDaily()
-
         val cName = GET.getString("cityName", "moscow")
         //edt_city_name_fav_city.setText(cName)
         tv_city_name_current_change_city.text = cName.toString()
@@ -71,47 +66,6 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
         getLiveDataHourlyForChangeCity()
         getLiveDataDailyForChangeCity()
 
-        /*
-        swipe_refresh_fav_city.setOnRefreshListener {
-            city_recycler_view.visibility = View.GONE
-            tv_error_fav_city.visibility = View.GONE
-            pb_loading_fav_city.visibility = View.GONE
-
-            val cityName = GET.getString("cityName", cName)
-            edt_city_name_fav_city.setText(cityName)
-            //fav_city_item_title_tv.text.toString()
-            viewModel.refreshDataForFavCity(cityName!!)
-            swipe_refresh_fav_city.isRefreshing = false
-        }
-
-        img_search_fav_city.setOnClickListener {
-            val cityName = edt_city_name_fav_city.text.toString()
-            //cityName = fav_city_item_title_tv.text.toString()
-            //fav_city_item_title_tv.text = cityName
-            SET.putString("cityName", cityName)
-            //SET.putString("cityName", cityName2)
-            SET.apply()
-            //if(listFavCity.isEmpty()) showToast("Добавьте город")
-            //else replaceFragment(CreateGroupFragment(listFavCity))
-            //viewModel.refreshData(cityName)
-            //cityName = listItemFavCity.name
-            //mAdapter.updateListItems(listItemFavCity)
-            viewModel.refreshDataForFavCity(cityName)
-            //viewModel.refreshForecastData(cityName)
-            //viewModel.refreshForecastData2(cityName)
-            initRecyclerView()
-            //getLiveDataFavCity()
-            //getLiveData()
-            //getLiveDataHourly()
-            //getLiveDataDaily()
-            Log.i(com.weather.openweatherapp.view.TAG, "onCreate: " + cityName)
-            //edt_city_name_fav_city.clearComposingText()
-
-        }
-
-         */
-
-
         image_btn_current_change_city_iv.setOnClickListener {
                 replaceFragment(FavCityFragment())
         }
@@ -124,29 +78,10 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
         mAdapter = HourlyWeatherAdapter()
         mRecyclerView.adapter = mAdapter
         mLayoutManager = LinearLayoutManager(APP_ACTIVITY)
-        //Concat Adapter
-        /*
-        val arrayList = arrayListOf<ChangeCityAdapter>()
-        for(favCityItem in listFavCity){
-            mAdapter = ChangeCityAdapter()
-            arrayList.add(mAdapter)
-        }
-
-
-        //mAdapter = HourlyWeatherAdapter()
-
-        val concatAdapterConfig = ConcatAdapter.Config.Builder()
-            .setIsolateViewTypes(false)
-            .build()
-
-        val concatAdapter = ConcatAdapter(concatAdapterConfig, arrayList)
-        mLayoutManager = LinearLayoutManager(APP_ACTIVITY)
-        mRecyclerView.adapter = concatAdapter
-
-         */
 
     }//initRecyclerView
 
+    //current weather for the selected city
     private fun getLiveDataCurrentForChangeCity() {
 
         viewModel.weather_data.observe(viewLifecycleOwner, Observer { data ->
@@ -192,6 +127,7 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     }//getLiveDataCurrentForChangeCity
 
+    //hourly weather for the selected city
     private fun getLiveDataHourlyForChangeCity() {
 
         viewModel.forecast_weather_data.observe(viewLifecycleOwner, Observer { data ->
@@ -238,6 +174,7 @@ class ChangeCityFragment : Fragment(R.layout.fragment_change_city) {
 
     }//getLiveDataHourlyForChangeCity
 
+    //daily weather for the selected city
     private fun getLiveDataDailyForChangeCity() {
 
         viewModel.forecast_weather_data2.observe(viewLifecycleOwner, Observer { data ->

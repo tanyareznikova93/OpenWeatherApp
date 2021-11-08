@@ -65,7 +65,7 @@
                     android:inputType="text"
                     android:maxLines="1"
                     android:textColor="@color/white"
-                    android:hint="Введите город..."
+                    android:hint="@string/fav_city_hint_daily_weather_input_city"
                     android:backgroundTint="#2A91E3"
                     android:lines="1"
                     />

@@ -17,7 +17,6 @@ import com.weather.openweatherapp.fragment.changecity.ChangeCityFragment
 //import com.weather.openweatherapp.fragment.current.CurrentWeatherFragment
 import com.weather.openweatherapp.fragment.favcity.FavCityFragment
 import com.weather.openweatherapp.utils.APP_ACTIVITY
-import com.weather.openweatherapp.utils.asDate
 import com.weather.openweatherapp.utils.hideKeyboard
 import com.weather.openweatherapp.utils.replaceFragment
 import com.weather.openweatherapp.viewmodel.MainViewModel
@@ -123,6 +122,7 @@ class MainActivity : AppCompatActivity() {
         mLayoutManager = LinearLayoutManager(APP_ACTIVITY)
     }
 
+    //current weather
     private fun getLiveData() {
 
            viewModel.weather_data.observe(this, Observer { data ->
@@ -168,6 +168,7 @@ class MainActivity : AppCompatActivity() {
 
        }//getLiveData
 
+    //hourly weather
     private fun getLiveDataHourly() {
 
         viewModel.forecast_weather_data.observe(this, Observer { data ->
@@ -213,6 +214,7 @@ class MainActivity : AppCompatActivity() {
 
     }//getLiveDataHourly
 
+    //daily weather
     private fun getLiveDataDaily() {
 
         viewModel.forecast_weather_data2.observe(this, Observer { data ->

@@ -36,10 +36,6 @@ import java.util.ArrayList
 
 class FavCityAdapter :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
 
-    private var listItem = mutableListOf<WeatherModel>()
-    private var cnList: ArrayList<CityNameModel> = ArrayList()
-    //private var viewModel = MainViewModel()
-    //private val changeCityFragment = ChangeCityFragment()
     private lateinit var viewModel: MainViewModel
     private lateinit var GET: SharedPreferences
     private lateinit var SET: SharedPreferences.Editor
@@ -61,6 +57,7 @@ class FavCityAdapter :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
 
         viewModel = ViewModelProviders.of(APP_ACTIVITY).get(MainViewModel::class.java)
 
+        //delete city by ID from DB
         holder.itemView.setOnLongClickListener {
 
             when(cityNameList[holder.adapterPosition].id) {
@@ -77,6 +74,7 @@ class FavCityAdapter :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
             }
         }
 
+        //displays the weather for the selected city
         holder.itemView.setOnClickListener {
 
             when (cityNameList[holder.adapterPosition].cityname) {
@@ -133,11 +131,5 @@ class FavCityAdapter :RecyclerView.Adapter<FavCityAdapter.FavCityHolder>() {
             sqLiteHelper.deleteCityById(id)
 
     }//deleteCities
-
-    fun getCity(){
-        val cNameList = sqLiteHelper.getAllCityName()
-        //showToast("Выведен на экран : ${cNameList.size}")
-        updateCities(cNameList)
-    }
 
 }//MainListAdapter

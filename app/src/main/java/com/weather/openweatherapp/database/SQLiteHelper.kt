@@ -11,8 +11,8 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
 
     companion object {
         private const val DATABASE_VERSION = 1
-        private const val DATABASE_NAME = "citiesDB.db"
-        private const val TABLE_CITY = "tbl_cities"
+        private const val DATABASE_NAME = "fav_city_db.db"
+        private const val TABLE_CITY = "fav_city_tbl"
         private const val ID = "id"
         private const val CITYNAME = "cityname"
     }
@@ -20,7 +20,7 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
     override fun onCreate(db: SQLiteDatabase?) {
 
         val createTableCity = ("CREATE TABLE " + TABLE_CITY + "("
-                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + CITYNAME + " TEXT UNIQUE"
+                + ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + CITYNAME + " TEXT NOT NULL UNIQUE"
                 + ")")
         db?.execSQL(createTableCity)
     }//onCreate
@@ -44,10 +44,11 @@ class SQLiteHelper(context: Context): SQLiteOpenHelper(context, DATABASE_NAME, n
 
     }//InsertCityName
 
+
     fun getAllCityName(): ArrayList<CityNameModel>{
 
         val cnList:ArrayList<CityNameModel> = ArrayList()
-        val selectQuery = "SELECT  * FROM $TABLE_CITY ORDER BY $CITYNAME ASC"
+        val selectQuery = "SELECT * FROM $TABLE_CITY ORDER BY $CITYNAME ASC"
         //val selectQuery = "SELECT  * FROM " + TABLE_CITY
         val db = this.readableDatabase
 
