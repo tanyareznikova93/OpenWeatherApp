@@ -11,11 +11,11 @@
 
         <TextView
             android:id="@+id/tv_error_current_change_city"
+            style="@style/settings_main"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/error_message"
             android:padding="15dp"
-            android:background="#4DFFFFFF"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -119,11 +119,11 @@
 
                     <TextView
                         android:id="@+id/tv_error_hourly_current_change_city"
+                        style="@style/settings_main"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/error_message"
                         android:padding="15dp"
-                        android:background="#4DFFFFFF"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
@@ -163,11 +163,11 @@
 
                     <TextView
                         android:id="@+id/tv_error_daily_current_change_city"
+                        style="@style/settings_main"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/error_message"
                         android:padding="15dp"
-                        android:background="#4DFFFFFF"
                         android:visibility="gone"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
