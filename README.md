@@ -1,5 +1,4 @@
 # OpenWeatherApp
-Резникова Татьяна
 
 ТЗ Mobile
 Приложение Погода основаное на API OpenWeatherMap (5 Day Weather Forecast)
